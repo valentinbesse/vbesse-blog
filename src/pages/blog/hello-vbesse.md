@@ -1,5 +1,5 @@
 ---
-layout: ../layouts/Layout.astro
+layout: ../../layouts/Layout.astro
 title: "Bienvenue sur vbesse.com"
 description: "Ceci est mon tout premier article publié avec Astro et Vercel."
 pubDate: "2025-12-22"

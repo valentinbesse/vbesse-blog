@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+    <section class="about-container">
+        <h1>À propos de <span class="text-gradient">moi</span></h1>
+        
+        <div class="content">
+            <p>
+                Salut ! Je m'appelle <strong>Valentin</strong>. 
+                Bienvenue sur mon coin du web.
+            </p>
+
+            <p>
+                J'ai créé ce blog pour documenter mon apprentissage et partager mes expériences.
+                Lancer <strong>vbesse.com</strong> est pour moi un moyen de maîtriser les technologies web modernes
+                comme Astro et de comprendre comment fonctionne le déploiement continu.
+            </p>
+
+            <h3>Ce que j'aime</h3>
+            <ul>
+                <li>Découvrir de nouveaux frameworks (comme Astro !).</li>
+                <li>L'optimisation et la performance web.</li>
+                <li>Le design minimaliste.</li>
+            </ul>
+
+            <blockquote>
+                "Apprendre en faisant est la meilleure façon de progresser."
+            </blockquote>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .about-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .text-gradient {
+        color: var(--accent-color);
+    }
+
+    .content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+
+    ul {
+        margin: 1.5rem 0;
+        padding-left: 1.5rem;
+    }
+
+    li {
+        margin-bottom: 0.5rem;
+    }
+
+    blockquote {
+        border-left: 4px solid var(--accent-color);
+        margin: 2rem 0;
+        padding-left: 1rem;
+        font-style: italic;
+        color: #555;
+        background: #f9f9f9;
+        padding: 1rem;
+        border-radius: 0 8px 8px 0;
+    }
+</style>

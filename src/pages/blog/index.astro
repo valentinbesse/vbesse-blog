@@ -1,0 +1,89 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// 1. On récupère tous les fichiers Markdown (.md) qui sont dans ce dossier
+const posts = await Astro.glob('./*.md');
+
+// 2. On les trie par date (du plus récent au plus ancien)
+// Cela évite que ton premier article reste tout en haut pour l'éternité
+posts.sort((a, b) => Date.parse(b.frontmatter.pubDate) - Date.parse(a.frontmatter.pubDate));
+---
+
+<Layout>
+    <section class="blog-index">
+        <h1>Le Blog</h1>
+        <p class="subtitle">Mes écrits, tutoriels et pensées.</p>
+
+        <ul class="post-list">
+            {posts.map((post) => (
+                <li>
+                    <a href={post.url} class="post-link">
+                        <span class="post-date">{post.frontmatter.pubDate}</span>
+                        <h2 class="post-title">{post.frontmatter.title}</h2>
+                        <p class="post-desc">{post.frontmatter.description}</p>
+                    </a>
+                </li>
+            ))}
+        </ul>
+    </section>
+</Layout>
+
+<style>
+    .blog-index {
+        max-width: 720px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+        color: #666;
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+    }
+
+    .post-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .post-list li {
+        margin-bottom: 2rem;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 2rem;
+    }
+
+    .post-link {
+        text-decoration: none;
+        color: inherit; /* Garde la couleur du texte par défaut */
+        display: block; /* Rend toute la zone cliquable */
+        transition: opacity 0.2s;
+    }
+
+    .post-link:hover {
+        opacity: 0.7;
+        text-decoration: none;
+    }
+
+    .post-date {
+        font-size: 0.9rem;
+        color: #888;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .post-title {
+        margin: 0;
+        font-size: 1.5rem;
+        color: var(--text-color);
+    }
+
+    .post-desc {
+        margin-top: 0.5rem;
+        color: #555;
+        font-size: 1rem;
+    }
+</style>
