@@ -9,7 +9,7 @@ const posts = await Astro.glob('./*.md');
 posts.sort((a, b) => Date.parse(b.frontmatter.pubDate) - Date.parse(a.frontmatter.pubDate));
 ---
 
-<Layout>
+<Layout title="Le Blog">
     <section class="blog-index">
         <h1>Le Blog</h1>
         <p class="subtitle">Mes écrits, tutoriels et pensées.</p>

@@ -1,11 +1,37 @@
+---
+const {
+	title, // Le titre sera obligatoire sur chaque page
+	description = "Le blog personnel de Valentin. Développement, tech et découvertes.",
+	image = "/paysage-accueil.jpg",
+} = Astro.props;
+
+// On calcule l'URL "officielle" de la page actuelle pour Google
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Du vrac entassé | vbesse.com</title>
+
+		<link rel="canonical" href={canonicalURL} />
+		<title>{title} | vbesse.com</title>
+		<meta name="description" content={description} />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(image, Astro.url)} />
+
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={Astro.url} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={new URL(image, Astro.url)} />
 	</head>
 	<body>
 		<header>
@@ -34,10 +60,10 @@
 		--text-color: #1a1a1a;
 		--accent-color: #0070f3;
 		--gray-light: #f4f4f4;
-		--accent: #232946; /* Une couleur sombre pour le texte */
-		--accent-light: #eebbc3; /* Une couleur douce pour les fonds */
-		--accent-dark: #b8c1ec; /* Une couleur pour les boutons */
-		--brand-primary: #0070f3; /* Une couleur vive pour les accents et les liens */
+		--accent: #232946;
+		--accent-light: #eebbc3;
+		--accent-dark: #b8c1ec;
+		--brand-primary: #0070f3;
 	}
 
 	body {
@@ -63,9 +89,9 @@
 	}
 
 	main {
-		max-width: 720px; /* Largeur idéale pour la lecture */
-		margin: 0 auto; /* Centre le bloc horizontalement */
-		padding: 2rem 1rem; /* Ajoute une marge interne pour ne pas toucher les bords sur mobile */
+		max-width: 720px;
+		margin: 0 auto;
+		padding: 2rem 1rem;
 	}
 
 	a {
@@ -81,8 +107,8 @@
 		margin: 0;
 		padding: 0 1em;
 		background: white;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Une ombre très légère pour détacher le menu du contenu */
-		position: sticky; /* (Optionnel) Le menu reste accroché en haut quand on scrolle */
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+		position: sticky;
 		top: 0;
 		z-index: 10;
 	}
@@ -90,31 +116,31 @@
 	nav {
 		display: flex;
 		align-items: center;
-		justify-content: space-between; /* C'est LA commande magique qui pousse les éléments aux extrémités */
-		max-width: 1000px; /* On autorise le menu à être plus large que le texte des articles */
+		justify-content: space-between;
+		max-width: 1000px;
 		margin: 0 auto;
 		padding: 1rem 0;
 	}
 
 	.site-title {
 		font-size: 1.3rem;
-		font-weight: 800; /* Très gras pour ressortir comme un logo */
+		font-weight: 800;
 		color: var(--text-color);
 		text-decoration: none;
 		letter-spacing: -0.5px;
 	}
 
 	.site-title:hover {
-		text-decoration: none; /* Pas de soulignement sur le logo */
+		text-decoration: none;
 	}
 
 	.nav-links {
 		display: flex;
-		gap: 1.5rem; /* Espace de 24px entre chaque lien */
+		gap: 1.5rem;
 	}
 
 	.nav-links a {
-		color: #555; /* Gris foncé, plus élégant que le noir pur */
+		color: #555;
 		text-decoration: none;
 		font-weight: 500;
 		font-size: 1rem;
@@ -122,6 +148,6 @@
 	}
 
 	.nav-links a:hover {
-		color: var(--accent-color); /* Tes liens deviennent bleus au survol */
+		color: var(--accent-color);
 	}
 </style>
