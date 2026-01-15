@@ -10,9 +10,13 @@
 	<body>
 		<header>
 			<nav>
-				<a href="/">Accueil</a>
-				<a href="/blog">Blog</a>
-				<a href="/about">À propos</a>
+				<a href="/" class="site-title">vbesse.com</a>
+
+				<div class="nav-links">
+					<a href="/">Accueil</a>
+					<a href="/blog">Blog</a>
+					<a href="/about">À propos</a>
+				</div>
 			</nav>
 		</header>
 		<main>
@@ -74,7 +78,50 @@
 	}
 
 	header {
-		border-bottom: 1px solid var(--gray-light);
+		margin: 0;
+		padding: 0 1em;
+		background: white;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Une ombre très légère pour détacher le menu du contenu */
+		position: sticky; /* (Optionnel) Le menu reste accroché en haut quand on scrolle */
+		top: 0;
+		z-index: 10;
+	}
+
+	nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between; /* C'est LA commande magique qui pousse les éléments aux extrémités */
+		max-width: 1000px; /* On autorise le menu à être plus large que le texte des articles */
+		margin: 0 auto;
 		padding: 1rem 0;
+	}
+
+	.site-title {
+		font-size: 1.3rem;
+		font-weight: 800; /* Très gras pour ressortir comme un logo */
+		color: var(--text-color);
+		text-decoration: none;
+		letter-spacing: -0.5px;
+	}
+
+	.site-title:hover {
+		text-decoration: none; /* Pas de soulignement sur le logo */
+	}
+
+	.nav-links {
+		display: flex;
+		gap: 1.5rem; /* Espace de 24px entre chaque lien */
+	}
+
+	.nav-links a {
+		color: #555; /* Gris foncé, plus élégant que le noir pur */
+		text-decoration: none;
+		font-weight: 500;
+		font-size: 1rem;
+		transition: color 0.2s ease;
+	}
+
+	.nav-links a:hover {
+		color: var(--accent-color); /* Tes liens deviennent bleus au survol */
 	}
 </style>
