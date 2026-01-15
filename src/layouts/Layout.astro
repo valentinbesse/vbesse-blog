@@ -7,6 +7,8 @@ const {
 
 // On calcule l'URL "officielle" de la page actuelle pour Google
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+import Analytics from '@vercel/analytics/astro';
 ---
 
 <!doctype html>
@@ -49,6 +51,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			<slot />
 		</main>
 		<footer></footer>
+		<Analytics />
 	</body>
 </html>
 
