@@ -1,3 +1,7 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
 <!-- ---
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
@@ -9,90 +13,105 @@ import Layout from '../layouts/Layout.astro';
 <Layout>
 	<Welcome />
 </Layout> -->
-
----
-import Layout from '../layouts/Layout.astro';
----
-
 <Layout>
-    <div class="home-container">
-        <section class="hero">
-            <h1>Salut, je suis <span class="text-gradient">V. Besse</span>.</h1>
-            <p class="bio">
-                Bienvenue sur mon espace personnel. Je suis un passionné de technologies, 
-                explorant le développement web moderne. Ici, je partage mes découvertes, 
-                mes projets et mes réflexions techniques.
-            </p>
-            
-            <div class="cta-buttons">
-                <a href="/blog" class="button primary">Lire le Blog</a>
-                <a href="https://github.com/valentinbesse" target="_blank" class="button secondary">Mon GitHub</a>
-            </div>
-        </section>
-    </div>
+	<div class="home-container">
+		<section class="hero">
+			<img
+				src="/paysage-accueil.jpg"
+				alt="Un paysage montagnard du haut de l'Ardèche"
+				class="hero-image"
+			/>
+			<h1>Salut, je suis <span class="text-gradient">V. Besse</span>.</h1>
+			<p class="bio">
+				Bienvenue sur mon espace personnel. Je suis un passionné de
+				technologies, explorant le développement web moderne. Ici, je
+				partage mes découvertes, mes projets et mes réflexions
+				techniques.
+			</p>
+
+			<div class="cta-buttons">
+				<a href="/blog" class="button primary">Lire le Blog</a>
+				<a
+					href="https://github.com/valentinbesse"
+					target="_blank"
+					class="button secondary">Mon GitHub</a
+				>
+			</div>
+		</section>
+	</div>
 </Layout>
 
 <style>
-    /* Ce style ne s'applique qu'à la page d'accueil */
-    
-    .home-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        min-height: 60vh; /* Prend 60% de la hauteur de l'écran pour bien centrer */
+	/* Ce style ne s'applique qu'à la page d'accueil */
+
+	.home-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		min-height: 60vh; /* Prend 60% de la hauteur de l'écran pour bien centrer */
+	}
+
+	.hero {
+		text-align: center; /* Centre tout le texte */
+	}
+
+	.hero-image {
+        width: 100%;                 /* Prend toute la largeur disponible... */
+        max-width: 700px;            /* ...mais ne dépasse jamais 700px */
+        height: 300px;               /* Fixe une hauteur pour un effet "bannière" */
+        object-fit: cover;           /* Coupe l'image proprement si elle n'est pas au bon format, sans la déformer */
+        border-radius: 16px;         /* De jolis coins arrondis modernes */
+        margin-bottom: 2rem;         /* De l'espace entre l'image et ton titre */
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Une ombre douce pour donner de la profondeur */
     }
 
-    .hero {
-        text-align: center; /* Centre tout le texte */
-    }
+	h1 {
+		font-size: 3rem;
+		font-weight: 800;
+		margin-bottom: 1rem;
+		line-height: 1.2;
+	}
 
-    h1 {
-        font-size: 3rem;
-        font-weight: 800;
-        margin-bottom: 1rem;
-        line-height: 1.2;
-    }
+	.text-gradient {
+		color: var(--accent-color); /* Utilise le bleu défini plus tôt */
+		/* Optionnel : Ajoute un dégradé si tu veux être fancy */
+		/* background-image: linear-gradient(45deg, #0070f3, #00c6ff); */
+		/* -webkit-background-clip: text; */
+		/* -webkit-text-fill-color: transparent; */
+	}
 
-    .text-gradient {
-        color: var(--accent-color); /* Utilise le bleu défini plus tôt */
-        /* Optionnel : Ajoute un dégradé si tu veux être fancy */
-        /* background-image: linear-gradient(45deg, #0070f3, #00c6ff); */
-        /* -webkit-background-clip: text; */
-        /* -webkit-text-fill-color: transparent; */
-    }
+	.bio {
+		font-size: 1.2rem;
+		color: #555;
+		max-width: 600px;
+		margin: 0 auto 2.5rem auto; /* Centre le bloc de texte */
+	}
 
-    .bio {
-        font-size: 1.2rem;
-        color: #555;
-        max-width: 600px;
-        margin: 0 auto 2.5rem auto; /* Centre le bloc de texte */
-    }
+	.cta-buttons {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+	}
 
-    .cta-buttons {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-    }
+	.button {
+		padding: 0.8rem 1.5rem;
+		border-radius: 8px;
+		font-weight: 600;
+		transition: transform 0.2s ease;
+	}
 
-    .button {
-        padding: 0.8rem 1.5rem;
-        border-radius: 8px;
-        font-weight: 600;
-        transition: transform 0.2s ease;
-    }
+	.button:hover {
+		transform: translateY(-2px);
+		text-decoration: none;
+	}
 
-    .button:hover {
-        transform: translateY(-2px);
-        text-decoration: none;
-    }
+	.primary {
+		background-color: var(--accent-color);
+		color: white;
+	}
 
-    .primary {
-        background-color: var(--accent-color);
-        color: white;
-    }
-
-    .secondary {
-        background-color: #f4f4f4;
-        color: #333;
-    }
+	.secondary {
+		background-color: #f4f4f4;
+		color: #333;
+	}
 </style>
