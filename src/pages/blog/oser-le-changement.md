@@ -1,9 +1,12 @@
 ---
-layout: ../../layouts/Layout.astro
+layout: ../../layouts/BlogPost.astro
 title: "Pourquoi il faut savoir saisir les opportunités (et quitter sa zone de confort)"
 description: "Changer d'entreprise n'est pas une trahison, c'est souvent une nécessité pour grandir. Retour sur l'importance du mouvement dans une carrière."
 pubDate: "2026-02-11"
-image: "/paysage-accueil.jpg"
+image: "/choix-carriere.webp"
+imageAlt: "Un randonneur avec un sac à dos regarde un croisement : une route plate et goudronnée à gauche, et un sentier escarpé menant vers une montagne lumineuse au lever du soleil à droite."
+imageCaption: "Image générée par IA."
+aiDisclaimer: "Article écrit avec l'aide de l'IA."
 ---
 
 On entend souvent dire que la loyauté envers une entreprise est une vertu cardinale. Que rester longtemps au même endroit est un gage de stabilité. Pourtant, dans nos métiers, la stabilité peut vite ressembler à de la stagnation.
