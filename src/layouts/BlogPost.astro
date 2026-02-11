@@ -1,19 +1,23 @@
 ---
 import Layout from './Layout.astro';
+import { Image } from 'astro:assets';
 
 const { frontmatter } = Astro.props;
 ---
 
-<Layout title={frontmatter.title} description={frontmatter.description} image={frontmatter.image}>
+<Layout title={frontmatter.title} description={frontmatter.description}>
     
     <article class="blog-post">
+        
         {frontmatter.image && (
             <figure class="hero-figure">
-                <img 
+                <Image 
                     src={frontmatter.image} 
                     alt={frontmatter.imageAlt || frontmatter.title} 
-                    class="hero-image" 
+                    class="hero-image"
+                    format="webp"
                 />
+                
                 {frontmatter.imageCaption && (
                     <figcaption class="hero-caption">
                         {frontmatter.imageCaption}
