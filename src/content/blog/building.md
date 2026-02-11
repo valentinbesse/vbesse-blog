@@ -3,6 +3,7 @@ title: "De l'idée à la mise en ligne : La stack technique derrière ce blog"
 description: "Pourquoi j'ai choisi Astro et Vercel plutôt que Hugo ou WordPress, et comment j'ai configuré ce site de A à Z."
 pubDate: "2026-01-15"
 image: "../../assets/architecture-conceptuelle.png"
+imageCaption: "Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
 ---
 
