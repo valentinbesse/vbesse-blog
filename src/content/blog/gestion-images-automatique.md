@@ -2,7 +2,7 @@
 title: "Fini les images de 10 Mo : Mon pipeline d'optimisation automatique avec Astro"
 description: "Comment je suis passé d'une gestion manuelle fastidieuse à un workflow entièrement automatisé grâce aux Content Collections et Astro Assets."
 pubDate: "2026-02-13"
-image: "../../assets/pipeline-images.jpg"
+image: "../../assets/pipeline-images.png"
 imageAlt: "Un schéma technique montrant une image brute entrant dans un entonnoir 'Astro Assets' et en ressortant optimisée en WebP sur différents écrans."
 imageCaption: "Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
