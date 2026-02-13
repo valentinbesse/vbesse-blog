@@ -5,6 +5,7 @@ pubDate: "2026-01-15"
 image: "../../assets/architecture-conceptuelle.png"
 imageCaption: "Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
+tags: ["Carrière", "Side Project", "Apprentissage", "Mindset"]
 ---
 
 C'est fait. **vbesse.com** est en ligne. 

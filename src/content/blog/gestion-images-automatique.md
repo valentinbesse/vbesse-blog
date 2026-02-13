@@ -6,6 +6,7 @@ image: "../../assets/pipeline-images.png"
 imageAlt: "Un schéma technique montrant une image brute entrant dans un entonnoir 'Astro Assets' et en ressortant optimisée en WebP sur différents écrans."
 imageCaption: "Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
+tags: ["Astro", "Web Perf", "Images", "Automation", "DX"]
 ---
 
 L'autre jour, j'ai voulu publier un article rapidement. J'ai généré une image de couverture avec l'IA, je l'ai uploadée, et j'ai poussé le tout en ligne.

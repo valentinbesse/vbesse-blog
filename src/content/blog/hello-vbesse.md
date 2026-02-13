@@ -2,6 +2,7 @@
 title: "Bienvenue sur vbesse.com"
 description: "Ceci est mon tout premier article publié avec Astro et Vercel."
 pubDate: "2025-12-22"
+tags: ["Blog", "Side Project", "Apprentissage", "Astro"]
 ---
 
 # Bonjour tout le monde !
