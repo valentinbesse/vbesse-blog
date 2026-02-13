@@ -1,30 +1,30 @@
 ---
-import Layout from './Layout.astro';
-import { Image } from 'astro:assets';
+import Layout from "./Layout.astro";
+import { Image } from "astro:assets";
 
 const { frontmatter } = Astro.props;
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.description}>
-    
     <article class="blog-post">
-        
-        {frontmatter.image && (
-            <figure class="hero-figure">
-                <Image 
-                    src={frontmatter.image} 
-                    alt={frontmatter.imageAlt || frontmatter.title} 
-                    class="hero-image"
-                    format="webp"
-                />
-                
-                {frontmatter.imageCaption && (
-                    <figcaption class="hero-caption">
-                        {frontmatter.imageCaption}
-                    </figcaption>
-                )}
-            </figure>
-        )}
+        {
+            frontmatter.image && (
+                <figure class="hero-figure">
+                    <Image
+                        src={frontmatter.image}
+                        alt={frontmatter.imageAlt || frontmatter.title}
+                        class="hero-image"
+                        format="webp"
+                    />
+
+                    {frontmatter.imageCaption && (
+                        <figcaption class="hero-caption">
+                            {frontmatter.imageCaption}
+                        </figcaption>
+                    )}
+                </figure>
+            )
+        }
 
         <header class="post-header">
             <h1 class="post-title">{frontmatter.title}</h1>
@@ -35,26 +35,29 @@ const { frontmatter } = Astro.props;
             <slot />
         </div>
 
-        {frontmatter.aiDisclaimer && (
-            <footer class="post-footer">
-                <p class="ai-note">✨ {frontmatter.aiDisclaimer}</p>
-            </footer>
-        )}
+        {
+            frontmatter.aiDisclaimer && (
+                <footer class="post-footer">
+                    <p class="ai-note">✨ {frontmatter.aiDisclaimer}</p>
+                </footer>
+            )
+        }
     </article>
-
 </Layout>
 
 <style>
     /* ... Tes styles existants ... */
-    .hero-figure { margin: 0 0 2rem 0; }
-    
+    .hero-figure {
+        margin: 0 0 2rem 0;
+    }
+
     .hero-image {
         width: 100%;
         height: auto;
         aspect-ratio: 16/9;
         object-fit: cover;
         border-radius: 12px;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
         display: block;
     }
 
@@ -87,6 +90,14 @@ const { frontmatter } = Astro.props;
         margin-bottom: 3rem;
     }
 
+    .post-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 2rem auto;
+        border-radius: 8px;
+    }
+
     .post-footer {
         border-top: 1px solid #eee;
         padding-top: 1rem;
@@ -100,5 +111,27 @@ const { frontmatter } = Astro.props;
         display: flex;
         align-items: center;
         gap: 0.5rem;
+    }
+
+    :global(.ai-prompt) {
+        background-color: #f3f4f6;
+        border-left: 4px solid #0070f3;
+        padding: 1.5rem;
+        margin: 2rem 0;
+        border-radius: 0 8px 8px 0;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 0.95rem;
+        color: #333;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+
+    :global(.ai-prompt ul) {
+        margin-left: 1.5rem;
+        margin-top: 0.5rem;
+    }
+
+    :global(.ai-prompt strong) {
+        color: #0070f3;
     }
 </style>

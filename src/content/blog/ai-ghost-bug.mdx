@@ -7,6 +7,10 @@ imageAlt: "Un montage montrant à gauche le logo coloré Aumbox et à droite le 
 imageCaption: "À gauche : ce que je voulais. À droite : ce que j'ai eu."
 aiDisclaimer: "Article écrit avec l'aide de l'IA (qui s'est excusée pour le bug)."
 ---
+import { Image } from 'astro:assets';
+import logoCorrect from '../../assets/aumbox-logo-correct.png';
+import pipelineImage from '../../assets/pipeline-images.png';
+import logoGhost from '../../assets/aumbox-logo-ghost.png';
 
 On s'habitue vite à la magie. Depuis que j'utilise l'IA générative pour illustrer ce blog, je suis souvent bluffé par la qualité et la pertinence des résultats. On tape quelques mots, et pouf : une illustration isométrique complexe apparaît.
 
@@ -18,15 +22,25 @@ Récemment, j'ai vécu une petite mésaventure qui illustre parfaitement le foss
 
 Tout commence avec le logo de mon projet "Aumbox". J'avais une excellente version générée précédemment : le symbole "Om" orange vif, sortant dynamiquement d'une boîte bleue, le tout sur un fond sombre élégant.
 
-<figure>
-    <img src="../../assets/aumbox-logo-correct.png" alt="Le logo Aumbox correct avec ses couleurs vives" style="width: 50%; margin: auto; display: block;">
+<figure style="text-align: center;">
+    <Image
+        src={logoCorrect}
+        alt="Le logo Aumbox correct"
+        width={400}
+        style="margin: 0 auto;"
+    />
     <figcaption>Le logo original : coloré, lumineux, parfait.</figcaption>
 </figure>
 
 De l'autre côté, j'ai écris un article à propos de mon pipeline d'optimisation d'images pour ce blog. Je voulais illustrer cet article avec une image du pipeline. Je fais donc la demande la plus simple du monde à l'IA :
 
-<figure>
-    <img src="../../assets/pipeline-images.png" alt="Un schéma technique montrant une image brute entrant dans un entonnoir 'Astro Assets' et en ressortant optimisée en WebP sur différents écrans." style="width: 50%; margin: auto; display: block;">
+<figure style="text-align: center;">
+    <Image
+        src={pipelineImage}
+        alt="Un schéma technique montrant une image brute entrant dans un entonnoir 'Astro Assets' et en ressortant optimisée en WebP sur différents écrans."
+        width={400}
+        style="margin: 0 auto;"
+    />
     <figcaption>Une illustration du pipeline d'optimisation d'images.</figcaption>
 </figure>
 
@@ -40,9 +54,14 @@ Je m'attendais à la même image, juste plus grande. Logique, non ?
 
 L'IA réfléchit quelques secondes et me livre... ceci :
 
-<figure>
-    <img src="../../assets/aumbox-logo-ghost.png" alt="Le résultat buggé : une image presque totalement noire" style="width: 50%; margin: auto; display: block; border: 1px solid #333;">
-    <figcaption>Le résultat : "J'ai éteint la lumière, chef."</figcaption>
+<figure style="text-align: center;">
+    <Image
+        src={logoGhost}
+        alt="Le logo Aumbox corrompu, presque noir, avec une forme fantomatique visible."
+        width={400}
+        style="margin: 0 auto;"
+    />
+    <figcaption>Le résultat : "J'ai éteint la lumière, chef.</figcaption>
 </figure>
 
 Si vous êtes sur mobile ou dans une pièce lumineuse, vous voyez probablement un carré noir. Mais si vous augmentez la luminosité au maximum et plissez les yeux dans le noir complet, vous verrez... une forme fantomatique. C'est le logo, mais il a été vidé de toute sa lumière et de ses couleurs.
@@ -81,10 +100,13 @@ Pour un humain, "agrandir l'image" implique évidemment "en gardant les couleurs
 
 Pour corriger le tir, il ne faut pas juste relancer la même commande. Il faut être directif et rajouter les informations perdues dans le prompt. Au lieu de "Génère l'image en taille réelle", le prompt correctif devient :
 
-> "Génère moi l'image pour illustrer l'article ""Fini les images de 10 Mo : Mon pipeline d'optimisation automatique avec Astro" :
-> * **Concept :** Un entonnoir futuriste ou une machine industrielle propre. D'un côté, on voit entrer des blocs lourds, bruts et désordonnés (les images "Raw"). De l'autre, il en ressort des diamants ou des blocs polis, légers et brillants (le WebP optimisé).
-> * **Prompt suggéré si tu veux la générer :** *"Isometric 3D illustration of a digital factory funnel processing raw heavy image files into lightweight optimized futuristic glowing data blocks, dark blue background, tech style, cyber blue lighting."*
-> 
->Je veux l'image en taille réelle."
+<div class="ai-prompt">
+    <strong>Génère moi l'image pour illustrer l'article...</strong>
+    <ul>
+        <li><strong>Concept :</strong> Un entonnoir futuriste ou une machine industrielle propre...</li>
+        <li><strong>Prompt suggéré :</strong> "Isometric 3D illustration of a digital factory..."</li>
+    </ul>   
+    Je veux l'image en taille réelle.
+</div>
 
 L'IA est un outil surpuissant, mais elle a parfois besoin qu'on lui tienne la main... et qu'on lui rappelle d'allumer la lumière.
