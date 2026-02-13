@@ -54,6 +54,10 @@ const {
             </div>
         </header>
 
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+
         <div class="post-content">
             <slot />
         </div>
@@ -308,6 +312,23 @@ const {
         padding-top: 2.5rem; /* Espace pour le bouton */
     }
 
+    #progress-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px; /* Épaisseur de la barre */
+        background: transparent;
+        z-index: 1001; /* Au-dessus de tout, même du header */
+    }
+
+    #progress-bar {
+        height: 100%;
+        background: var(--accent-color); /* Ton bleu électrique */
+        width: 0%;
+        transition: width 0.1s;
+    }
+
     /* 2. On style le bouton qui est généré par JS (donc global) */
     :global(.copy-code) {
         position: absolute; /* C'est ça qui le place en haut à droite */
@@ -375,7 +396,9 @@ const {
             // 4. L'événement Click
             copyButton.addEventListener("click", async () => {
                 // On récupère le texte du code (le <code> à l'intérieur du <pre>)
-                let code = codeBlock.querySelector("code").innerText;
+                const codeElement = codeBlock.querySelector("code");
+                if (!codeElement) return;
+                let code = codeElement.innerText;
 
                 // On écrit dans le presse-papier
                 await navigator.clipboard.writeText(code);
@@ -401,4 +424,13 @@ const {
     const checkIcon = `
   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
   `;
+</script>
+
+<script>
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById("progress-bar").style.width = scrolled + "%";
+    });
 </script>
