@@ -136,6 +136,9 @@ import Layout from "../layouts/Layout.astro";
 		transition: all 0.2s ease-in-out;
 		border: 2px solid transparent;
 		cursor: pointer;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	.button-group {
@@ -151,10 +154,16 @@ import Layout from "../layouts/Layout.astro";
 		.button-group {
 			flex-direction: column;
 			width: 100%;
+			padding: 0 1rem;
 		}
 
 		.button {
 			width: 100%;
+			box-sizing: border-box;
+			margin: 0;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 	}
 
