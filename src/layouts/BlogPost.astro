@@ -38,6 +38,15 @@ const { frontmatter } = Astro.props;
         {
             frontmatter.aiDisclaimer && (
                 <footer class="post-footer">
+                    {frontmatter.tags && (
+                        <div class="post-tags">
+                            {frontmatter.tags.map((tag) => (
+                                <a href={`/tags/${tag}`} class="tag-link">
+                                    #{tag}
+                                </a>
+                            ))}
+                        </div>
+                    )}
                     <p class="ai-note">✨ {frontmatter.aiDisclaimer}</p>
                 </footer>
             )
@@ -104,6 +113,26 @@ const { frontmatter } = Astro.props;
         margin-top: 2rem;
     }
 
+    .post-tags {
+        display: flex;
+        gap: 0.5rem;
+        margin: 1rem 0;
+    }
+    
+    .tag-link {
+        color: #0070f3;
+        font-size: 0.9rem;
+        text-decoration: none;
+        background: rgba(0, 112, 243, 0.1); /* Bleu très léger */
+        padding: 0.2rem 0.6rem;
+        border-radius: 4px;
+        transition: background 0.2s;
+    }
+
+    .tag-link:hover {
+        background: rgba(0, 112, 243, 0.2);
+    }
+
     .ai-note {
         font-size: 0.85rem;
         color: #888;
@@ -124,7 +153,6 @@ const { frontmatter } = Astro.props;
         color: #333;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
-
 
     :global(.ai-prompt ul) {
         margin-left: 1.5rem;
