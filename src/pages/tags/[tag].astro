@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  
+  const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())].filter(Boolean);
+
+  return uniqueTags.map((tag) => {
+    const filteredPosts = allPosts.filter((post) => 
+      post.data.tags?.includes(tag)
+    );
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<Layout title={`Articles sur ${tag}`}>
+  <section class="tag-page">
+    <h1>Articles marqués : <span class="highlight">#{tag}</span></h1>
+    
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+          <span class="date">({post.data.pubDate})</span>
+        </li>
+      ))}
+    </ul>
+    
+    <div class="back-link">
+        <a href="/tags">← Voir tous les tags</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .highlight { color: #0070f3; }
+  .tag-page { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
+  .post-list { margin-top: 2rem; list-style: none; padding: 0; }
+  .post-list li { margin-bottom: 1rem; font-size: 1.2rem; }
+  .post-list a { text-decoration: none; color: #333; font-weight: 500; }
+  .post-list a:hover { color: #0070f3; }
+  .date { color: #666; font-size: 0.9rem; margin-left: 0.5rem; }
+  .back-link { margin-top: 3rem; }
+</style>
