@@ -6,12 +6,12 @@ const blogCollection = defineCollection({
 	schema: ({ image }) => z.object({
 		title: z.string(),
 		description: z.string(),
-		pubDate: z.string(), // Ou z.date() si tu préfères
-        // C'est ici la magie : on dit que "image" est un fichier image valide
+		pubDate: z.string(),
 		image: image().optional(),
         imageAlt: z.string().optional(),
         imageCaption: z.string().optional(),
         aiDisclaimer: z.string().optional(),
+		tags: z.array(z.string()).optional(),
 	}),
 });
 
