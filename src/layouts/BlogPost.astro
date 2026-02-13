@@ -114,6 +114,10 @@ const { frontmatter } = Astro.props;
         border-radius: 8px;
     }
 
+    .post-content pre {
+        position: relative;
+    }
+
     .post-footer {
         border-top: 1px solid #eee;
         padding-top: 1rem;
@@ -195,46 +199,159 @@ const { frontmatter } = Astro.props;
         margin: 1rem 0;
     }
 
-    /* 4. Le contenu de l'article (La Prose) */
-    .prose {
-        width: 720px;
-        max-width: calc(100% - 2em);
-        margin: auto;
-        padding: 1em;
-        /* AVANT: color: rgb(var(--gray-dark)); */
+    .post-content {
+        width: 100%; /* S'assure de prendre la largeur disponible */
+        max-width: 100%;
         color: var(--text-color);
     }
 
-    /* Les titres dans l'article (h2, h3...) */
-    .prose h1,
-    .prose h2,
-    .prose h3,
-    .prose h4 {
-        color: var(--text-color);
+    .post-content :global(img) {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 2rem auto;
+        border-radius: 8px;
     }
 
-    /* Les liens dans le texte */
-    .prose a {
+    .post-content :global(h1),
+    .post-content :global(h2),
+    .post-content :global(h3),
+    .post-content :global(h4) {
+        color: var(--text-color);
+        margin-top: 2rem;
+    }
+
+    .post-content :global(a) {
         color: var(--accent-color);
         text-decoration: none;
     }
-    .prose a:hover {
+    .post-content :global(a:hover) {
         text-decoration: underline;
     }
 
-    /* Les citations (Blockquotes) */
-    .prose blockquote {
-        /* AVANT: background: #f9f9f9; border-left: 4px solid #ccc; */
-        background: var(--secondary-bg);
-        border-left: 4px solid var(--accent-color); /* Ou var(--border-color) */
-        color: var(--text-muted);
-    }
-
-    /* Le code "inline" (ex: `variable`) */
-    .prose code {
+    .post-content :global(code) {
         background-color: var(--code-bg);
         color: var(--text-color);
         padding: 0.2em 0.4em;
         border-radius: 4px;
+        font-size: 0.9em;
+    }
+
+    .post-content :global(blockquote) {
+        background: var(--secondary-bg);
+        border-left: 4px solid var(--accent-color);
+        color: var(--text-muted);
+        margin: 1.5rem 0;
+        padding: 1rem;
+    }
+
+    .post-content :global(hr) {
+        border: 0;
+        border-top: 1px solid var(--border-color);
+        margin: 2rem 0;
+    }
+
+    /* =========================================
+       CORRECTION POUR LE BLOC DE CODE ET LE BOUTON
+       ========================================= */
+
+    /* 1. On force le PRE à être relatif (pour caler le bouton) */
+    .post-content :global(pre) {
+        position: relative;
+        padding-top: 2.5rem; /* Espace pour le bouton */
+    }
+
+    /* 2. On style le bouton qui est généré par JS (donc global) */
+    :global(.copy-code) {
+        position: absolute; /* C'est ça qui le place en haut à droite */
+        top: 0.5rem;
+        right: 0.5rem;
+        z-index: 1;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+
+        background-color: rgba(128, 128, 128, 0.2);
+        border: 1px solid rgba(128, 128, 128, 0.3);
+        border-radius: 6px;
+        cursor: pointer;
+        color: var(--text-color);
+        transition: all 0.2s ease;
+    }
+
+    :global(.copy-code:hover) {
+        background-color: var(--accent-color);
+        color: white;
+        border-color: var(--accent-color);
+    }
+
+    :global(.copy-code.copied) {
+        border-color: #10b981;
+        color: #10b981;
+        background-color: rgba(16, 185, 129, 0.1);
+    }
+
+    /* Ajustement Light Mode */
+    :global(html:not(.dark) .copy-code) {
+        background-color: rgba(0, 0, 0, 0.05);
+        border-color: rgba(0, 0, 0, 0.1);
+        color: #666;
+    }
+    :global(html:not(.dark) .copy-code:hover) {
+        background-color: rgba(0, 0, 0, 0.1);
+        color: #333;
     }
 </style>
+
+<script>
+    // On attend que le DOM soit chargé
+    document.addEventListener("DOMContentLoaded", () => {
+        // 1. On sélectionne tous les blocs de code générés par Markdown
+        const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+        for (let codeBlock of codeBlocks) {
+            // 2. Création du bouton
+            let wrapper = document.createElement("div");
+            wrapper.style.position = "relative";
+
+            let copyButton = document.createElement("button");
+            copyButton.className = "copy-code";
+            copyButton.innerHTML = copyButtonIcon; // Icône par défaut
+
+            // 3. On insère le bouton DANS le bloc <pre>
+            // Pour que le position:absolute fonctionne, le <pre> doit être relative (voir CSS plus bas)
+            codeBlock.appendChild(copyButton);
+
+            // 4. L'événement Click
+            copyButton.addEventListener("click", async () => {
+                // On récupère le texte du code (le <code> à l'intérieur du <pre>)
+                let code = codeBlock.querySelector("code").innerText;
+
+                // On écrit dans le presse-papier
+                await navigator.clipboard.writeText(code);
+
+                // 5. Feedback visuel (On change l'icône)
+                copyButton.innerHTML = checkIcon;
+                copyButton.classList.add("copied");
+
+                // On remet l'icône normale après 2 secondes
+                setTimeout(() => {
+                    copyButton.innerHTML = copyButtonIcon;
+                    copyButton.classList.remove("copied");
+                }, 2000);
+            });
+        }
+    });
+
+    // Les Icônes SVG (pour ne pas dépendre d'une lib externe)
+    const copyButtonIcon = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+  `;
+
+    const checkIcon = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+  `;
+</script>
