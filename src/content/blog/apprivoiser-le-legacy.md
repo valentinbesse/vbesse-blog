@@ -9,7 +9,7 @@ aiDisclaimer: "Article écrit avec l'aide de l'IA (Correction et mise en forme).
 tags: ["Legacy", "Refactoring", "Testing", "Craftsmanship"]
 ---
 
-*Avant-propos : Cet article avait était écris lorsque je travaillais à [Davidson](https://www.davidson.fr/). Merci à [Jilly RUNDSTADLER](https://www.linkedin.com/in/jimmy-rundstadler/) et [Luc DEHAND](https://www.linkedin.com/in/luc-dehand/) pour leur relecture. Autre sujet, Je suis victime de mes propres limites et de mes biais. Je m’inscris dans le mouvement Software Craftsmanship et je suis coach Agile. Ma vision est influencée par ces notions. Je ne prétends pas rapporter ici la seule approche, ni même la meilleure. C’est juste la mienne.*
+*Avant-propos : Cet article avait était écris lorsque je travaillais à [Davidson](https://www.davidson.fr/). Merci à [Jimmy RUNDSTADLER](https://www.linkedin.com/in/jimmy-rundstadler/) et [Luc DEHAND](https://www.linkedin.com/in/luc-dehand/) pour leur relecture. Autre sujet, Je suis victime de mes propres limites et de mes biais. Je m’inscris dans le mouvement Software Craftsmanship et je suis coach Agile. Ma vision est influencée par ces notions. Je ne prétends pas rapporter ici la seule approche, ni même la meilleure. C’est juste la mienne.*
 
 ---
 
