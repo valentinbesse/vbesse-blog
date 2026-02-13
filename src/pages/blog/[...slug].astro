@@ -2,19 +2,18 @@
 import { getCollection } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 
-// 1. Cette fonction dit à Astro combien de pages il doit générer au total
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
-  return blogEntries.map(entry => ({
-    params: { slug: entry.slug }, props: { entry },
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
   }));
 }
 
-// 2. On récupère les données de l'article
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+const post = Astro.props;
+const { Content, remarkPluginFrontmatter } = await post.render();
 ---
 
-<BlogPost frontmatter={entry.data}>
-  <Content />
+<BlogPost {...post.data} minutesRead={remarkPluginFrontmatter.minutesRead}>
+	<Content />
 </BlogPost>
