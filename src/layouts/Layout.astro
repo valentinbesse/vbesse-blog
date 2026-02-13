@@ -8,9 +8,9 @@ const {
 // On calcule l'URL "officielle" de la page actuelle pour Google
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-import Analytics from '@vercel/analytics/astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Analytics from "@vercel/analytics/astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <!doctype html>
@@ -18,12 +18,21 @@ import Footer from '../components/Footer.astro';
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+		<link
+			rel="icon"
+			type="image/png"
+			href="/favicon-96x96.png"
+			sizes="96x96"
+		/>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    	<link rel="shortcut icon" href="/favicon.ico" />
-       	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-       	<link rel="manifest" href="/site.webmanifest" />
-    	<meta name="theme-color" content="#0d1b2a" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="/apple-touch-icon.png"
+		/>
+		<link rel="manifest" href="/site.webmanifest" />
+		<meta name="theme-color" content="#0d1b2a" />
 		<meta name="generator" content={Astro.generator} />
 
 		<link rel="canonical" href={canonicalURL} />
@@ -41,6 +50,29 @@ import Footer from '../components/Footer.astro';
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
 		<meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+		<script is:inline>
+			const theme = (() => {
+				if (
+					typeof localStorage !== "undefined" &&
+					localStorage.getItem("theme")
+				) {
+					return localStorage.getItem("theme");
+				}
+				if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+					return "dark";
+				}
+				return "light";
+			})();
+
+			if (theme === "dark") {
+				document.documentElement.classList.add("dark");
+			} else {
+				document.documentElement.classList.remove("dark");
+			}
+
+			window.localStorage.setItem("theme", theme);
+		</script>
 	</head>
 	<body>
 		<Header />
@@ -59,11 +91,25 @@ import Footer from '../components/Footer.astro';
 		--bg-color: #ffffff;
 		--text-color: #1a1a1a;
 		--accent-color: #0070f3;
+		--border-color: #eaeaea;
+		--secondary-bg: #f5f5f5;
 		--gray-light: #f4f4f4;
 		--accent: #232946;
 		--accent-light: #eebbc3;
 		--accent-dark: #b8c1ec;
 		--brand-primary: #0070f3;
+		--text-muted: #666666; /* Gris moyen pour le mode clair */
+		--code-bg: #f5f5f5; /* Fond pour les blocs de code inline */
+	}
+
+	html.dark {
+		--bg-color: #0d1b2a; /* Ton bleu très sombre */
+		--text-color: #e0e0e0;
+		--accent-color: #4da3ff; /* Un bleu plus clair pour ressortir sur le noir */
+		--border-color: #2d3b4f;
+		--secondary-bg: #162a40;
+		--text-muted: #a3a3a3; /* Gris clair pour le mode sombre */
+		--code-bg: #1e293b; /* Fond sombre pour le code */
 	}
 
 	body {
@@ -86,6 +132,9 @@ import Footer from '../components/Footer.astro';
 		padding: 0;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
+		transition:
+			background-color 0.3s ease,
+			color 0.3s ease;
 	}
 
 	main {
@@ -140,7 +189,7 @@ import Footer from '../components/Footer.astro';
 	}
 
 	.nav-links a {
-		color: #555;
+		color: var(--accent-color);
 		text-decoration: none;
 		font-weight: 500;
 		font-size: 1rem;

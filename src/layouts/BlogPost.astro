@@ -78,6 +78,13 @@ const { frontmatter } = Astro.props;
         font-style: italic;
     }
 
+    .post-header {
+        background-color: var(--secondary-bg);
+        padding: 1rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+    }
+
     .post-title {
         font-size: 2.5rem;
         line-height: 1.2;
@@ -118,7 +125,7 @@ const { frontmatter } = Astro.props;
         gap: 0.5rem;
         margin: 1rem 0;
     }
-    
+
     .tag-link {
         color: #0070f3;
         font-size: 0.9rem;
@@ -143,14 +150,14 @@ const { frontmatter } = Astro.props;
     }
 
     :global(.ai-prompt) {
-        background-color: #f3f4f6;
-        border-left: 4px solid #0070f3;
+        background-color: var(--secondary-bg);
+        border-left: 4px solid var(--accent-color);
         padding: 1.5rem;
         margin: 2rem 0;
         border-radius: 0 8px 8px 0;
         font-family: "Courier New", Courier, monospace;
         font-size: 0.95rem;
-        color: #333;
+        color: var(--text-color);
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
 
@@ -161,5 +168,73 @@ const { frontmatter } = Astro.props;
 
     :global(.ai-prompt strong) {
         color: #0070f3;
+    }
+
+    .title h1 {
+        margin: 0 0 0.5em 0;
+        /* AVANT: color: #333; */
+        color: var(--text-color); /* S'adapte au thème */
+    }
+
+    /* 2. La date et les métadonnées */
+    .date {
+        margin-bottom: 0.5em;
+        /* AVANT: color: #666; */
+        color: var(--text-muted); /* Gris adapté */
+    }
+
+    .last-updated-on {
+        font-style: italic;
+    }
+
+    /* 3. La ligne de séparation (HR) */
+    hr {
+        border: 0;
+        /* AVANT: border-top: 1px solid #ddd; */
+        border-top: 1px solid var(--border-color); /* Bordure subtile */
+        margin: 1rem 0;
+    }
+
+    /* 4. Le contenu de l'article (La Prose) */
+    .prose {
+        width: 720px;
+        max-width: calc(100% - 2em);
+        margin: auto;
+        padding: 1em;
+        /* AVANT: color: rgb(var(--gray-dark)); */
+        color: var(--text-color);
+    }
+
+    /* Les titres dans l'article (h2, h3...) */
+    .prose h1,
+    .prose h2,
+    .prose h3,
+    .prose h4 {
+        color: var(--text-color);
+    }
+
+    /* Les liens dans le texte */
+    .prose a {
+        color: var(--accent-color);
+        text-decoration: none;
+    }
+    .prose a:hover {
+        text-decoration: underline;
+    }
+
+    /* Les citations (Blockquotes) */
+    .prose blockquote {
+        /* AVANT: background: #f9f9f9; border-left: 4px solid #ccc; */
+        background: var(--secondary-bg);
+        border-left: 4px solid var(--accent-color); /* Ou var(--border-color) */
+        color: var(--text-muted);
+    }
+
+    /* Le code "inline" (ex: `variable`) */
+    .prose code {
+        background-color: var(--code-bg);
+        color: var(--text-color);
+        padding: 0.2em 0.4em;
+        border-radius: 4px;
     }
 </style>
