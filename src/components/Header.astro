@@ -1,0 +1,135 @@
+---
+// src/components/Header.astro
+const { pathname } = Astro.url;
+const isActive = (href) => {
+    return href === pathname || href === pathname.replace(/\/$/, '');
+};
+---
+
+<header>
+    <nav>
+        <a href="/" class="logo">
+            <span class="logo-text">vbesse.com</span>
+        </a>
+
+        <button id="menu-toggle" aria-label="Menu" aria-expanded="false">
+            <svg class="icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+
+        <div class="nav-links">
+            <a href="/" class={isActive('/') ? 'active' : ''}>Accueil</a>
+            <a href="/blog" class={isActive('/blog') ? 'active' : ''}>Blog</a>
+            <a href="/tags" class={isActive('/tags') ? 'active' : ''}>Sujets</a>
+            <a href="/about" class={isActive('/about') ? 'active' : ''}>À propos</a>
+        </div>
+    </nav>
+</header>
+
+<script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            navLinks.classList.toggle('expanded');
+            menuToggle.classList.toggle('open');
+        });
+    }
+</script>
+
+<style>
+    header {
+        margin: 0;
+        padding: 0 1em;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0, 0.05);
+        position: relative; /* Important pour le positionnement du menu mobile */
+        z-index: 100;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0;
+        max-width: 1200px; /* Ou ta largeur max standard */
+        margin: 0 auto;
+    }
+
+    .logo-text {
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: var(--text-color);
+        text-decoration: none;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .nav-links a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: color 0.2s;
+        border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+        color: var(--accent-color); /* Ton bleu électrique */
+        border-bottom-color: var(--accent-color);
+    }
+
+    /* --- MOBILE --- */
+    #menu-toggle {
+        display: none; /* Caché par défaut */
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+    }
+
+    /* Icones du burger */
+    .icon-close { display: none; }
+    #menu-toggle.open .icon-menu { display: none; }
+    #menu-toggle.open .icon-close { display: block; }
+
+    @media (max-width: 768px) {
+        #menu-toggle {
+            display: flex; /* Visible sur mobile */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-links {
+            display: none; /* Caché par défaut sur mobile */
+            position: absolute;
+            top: 100%; /* Juste en dessous du header */
+            left: 0;
+            right: 0;
+            background: white;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            gap: 1.5rem;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .nav-links.expanded {
+            display: flex; /* Magie JavaScript */
+        }
+
+        .nav-links a {
+            font-size: 1.2rem;
+            width: 100%;
+            text-align: center;
+            padding: 0.5rem 0;
+        }
+    }
+</style>
