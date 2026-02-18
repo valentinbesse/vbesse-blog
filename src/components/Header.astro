@@ -1,5 +1,7 @@
 ---
 // src/components/Header.astro
+import Search from "./Search.astro";
+
 const { pathname } = Astro.url;
 const isActive = (href) => {
     return href === pathname || href === pathname.replace(/\/$/, "");
@@ -63,6 +65,7 @@ const isActive = (href) => {
                     ></path></svg
                 >
             </button>
+            <Search />
         </div>
 
         <button id="menu-toggle" aria-label="Menu" aria-expanded="false">
@@ -252,10 +255,12 @@ const isActive = (href) => {
     #theme-toggle {
         background: none;
         border: none;
+        border-right: 1px solid var(--action-border-color);
+        border-right-color: var(--action-border-color);
+        padding-right: 1rem;
         cursor: pointer;
         color: var(--text-color);
-        padding: 0.5rem;
-        border-radius: 50%;
+        border-radius: 0;
         transition: background 0.2s;
         display: flex;
         align-items: center;
@@ -303,9 +308,10 @@ const isActive = (href) => {
         const newMenuToggle = menuToggle?.cloneNode(true);
         if (menuToggle && newMenuToggle && menuToggle.parentNode) {
             menuToggle.parentNode.replaceChild(newMenuToggle, menuToggle);
-            
+
             newMenuToggle.addEventListener("click", () => {
-                const isExpanded = newMenuToggle.getAttribute("aria-expanded") === "true";
+                const isExpanded =
+                    newMenuToggle.getAttribute("aria-expanded") === "true";
                 newMenuToggle.setAttribute("aria-expanded", !isExpanded);
                 navLinksContainer?.classList.toggle("expanded");
                 newMenuToggle.classList.toggle("open");
@@ -319,16 +325,19 @@ const isActive = (href) => {
         navLinks.forEach((link) => {
             link.classList.remove("active");
             const href = link.getAttribute("href")?.replace(/\/$/, "");
-            
+
             // Logique de correspondance (Exacte ou "commence par" pour les sous-pages du blog)
-            if (href === currentPath || (href !== "" && href !== "/" && currentPath.startsWith(href))) {
+            if (
+                href === currentPath ||
+                (href !== "" && href !== "/" && currentPath.startsWith(href))
+            ) {
                 link.classList.add("active");
             }
         });
 
         // --- 3. GESTION DU DARK MODE (TOGGLE) ---
         const themeToggle = document.getElementById("theme-toggle");
-        
+
         // Nettoyage listener (cloneNode astuce)
         const newThemeToggle = themeToggle?.cloneNode(true);
         if (themeToggle && newThemeToggle && themeToggle.parentNode) {
@@ -342,7 +351,7 @@ const isActive = (href) => {
                 localStorage.setItem("theme", isDark ? "dark" : "light");
             });
         }
-        
+
         // --- 4. FORCE LE DARK MODE APRÈS NAVIGATION ---
         const theme = localStorage.getItem("theme");
         if (theme === "dark") {
@@ -350,7 +359,9 @@ const isActive = (href) => {
         }
 
         // --- 5. FORCER LA FERMETURE APRÈS NAVIGATION ---
-        document.addEventListener('astro:after-swap', closeMenu, { once: true });
+        document.addEventListener("astro:after-swap", closeMenu, {
+            once: true,
+        });
     }
 
     // On lance la fonction à chaque navigation (y compris la première)

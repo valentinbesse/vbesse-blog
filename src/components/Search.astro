@@ -1,0 +1,159 @@
+---
+import "@pagefind/default-ui/css/ui.css";
+---
+
+<button id="search-trigger" aria-label="Rechercher (Cmd+K)">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+</button>
+
+<dialog id="search-dialog">
+    <div class="dialog-content">
+        <div id="pagefind-search"></div> <form method="dialog">
+            <button class="close-btn" aria-label="Fermer">✕</button>
+        </form>
+    </div>
+</dialog>
+
+<style>
+    /* BOUTON DECLENCHEUR */
+    #search-trigger {
+        background: none;
+        border: none;
+        color: var(--text-color);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 6px;
+        transition: background 0.2s;
+    }
+
+    #search-trigger:hover {
+        background: var(--gray-light);
+    }
+
+    .shortcut {
+        font-size: 0.75rem;
+        background: var(--border-color);
+        padding: 0.1rem 0.4rem;
+        border-radius: 4px;
+        color: var(--text-muted);
+        border: 1px solid var(--border-color);
+    }
+
+    /* MODALE (Backdrop) */
+    dialog {
+        padding: 0;
+        border: none;
+        border-radius: 12px;
+        background: var(--bg-color);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        max-width: 600px;
+        width: 90%;
+        margin-top: 10vh; /* Pas centré verticalement, un peu vers le haut */
+    }
+
+    dialog::backdrop {
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(2px);
+    }
+
+    .dialog-content {
+        padding: 1.5rem;
+        position: relative;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: var(--text-muted);
+    }
+
+    /* PERSONNALISATION PAGEFIND (Pour matcher ton thème) */
+    :global(.pagefind-ui) {
+        --pagefind-ui-scale: 0.9;
+        --pagefind-ui-primary: var(--accent-color);
+        --pagefind-ui-text: var(--text-color);
+        --pagefind-ui-background: var(--bg-color);
+        --pagefind-ui-border: var(--border-color);
+        --pagefind-ui-tag: var(--gray-light);
+        width: 100%;
+    }
+
+    :global(.pagefind-ui .pagefind-ui__search-input) {
+        background: var(--secondary-bg);
+        border: 1px solid var(--border-color);
+        color: var(--text-color);
+        font-size: 1.1rem;
+        border-radius: 8px;
+    }
+    
+    :global(.pagefind-ui .pagefind-ui__drawer) {
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+</style>
+
+<script>
+    // On importe la classe UI depuis le package installé
+    import { PagefindUI } from "@pagefind/default-ui";
+
+    let uiInstance = null;
+
+    function initSearch() {
+        const dialog = document.getElementById("search-dialog");
+        const trigger = document.getElementById("search-trigger");
+        const closeBtn = document.querySelector(".close-btn");
+
+        if (!dialog || !trigger) return;
+
+        // 1. Initialiser Pagefind (une seule fois pour éviter les doublons)
+        const searchDiv = document.getElementById("pagefind-search");
+        if (searchDiv && searchDiv.innerHTML === "") {
+             uiInstance = new PagefindUI({
+                element: "#pagefind-search",
+                showSubResults: true,
+                showImages: false,
+                translations: {
+                    placeholder: "Rechercher un article...",
+                    clear_search: "Effacer",
+                    zero_results: "Aucun résultat pour [SEARCH_TERM]"
+                }
+            });
+        }
+
+        // 2. Gestion ouverture/fermeture
+        const openModal = () => dialog.showModal();
+        const closeModal = () => dialog.close();
+
+        trigger.addEventListener("click", openModal);
+        closeBtn?.addEventListener("click", closeModal);
+
+        // Fermer en cliquant à l'extérieur (sur le backdrop)
+        dialog.addEventListener("click", (e) => {
+            const rect = dialog.getBoundingClientRect();
+            const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+              rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
+            if (!isInDialog) {
+                dialog.close();
+            }
+        });
+
+        // 3. Raccourci Clavier (Cmd+K ou Ctrl+K)
+        document.addEventListener("keydown", (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+                e.preventDefault(); // Empêche le comportement navigateur
+                dialog.open ? closeModal() : openModal();
+            }
+        });
+    }
+
+    // Compatible avec ClientRouter
+    document.addEventListener("astro:page-load", initSearch);
+</script>
