@@ -290,6 +290,15 @@ const isActive = (href) => {
         const menuToggle = document.getElementById("menu-toggle");
         const navLinksContainer = document.querySelector(".nav-links");
 
+        // Fonction pour fermer le menu proprement
+        const closeMenu = () => {
+            if (menuToggle && navLinksContainer) {
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.classList.remove("open");
+                navLinksContainer.classList.remove("expanded");
+            }
+        };
+
         // Nettoyage des anciens listeners pour éviter les doublons (Header persistant)
         const newMenuToggle = menuToggle?.cloneNode(true);
         if (menuToggle && newMenuToggle && menuToggle.parentNode) {
@@ -335,11 +344,13 @@ const isActive = (href) => {
         }
         
         // --- 4. FORCE LE DARK MODE APRÈS NAVIGATION ---
-        // C'est ça qui corrige ton bug de retour au blanc !
         const theme = localStorage.getItem("theme");
         if (theme === "dark") {
             document.documentElement.classList.add("dark");
         }
+
+        // --- 5. FORCER LA FERMETURE APRÈS NAVIGATION ---
+        document.addEventListener('astro:after-swap', closeMenu, { once: true });
     }
 
     // On lance la fonction à chaque navigation (y compris la première)
