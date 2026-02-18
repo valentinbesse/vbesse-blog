@@ -3,10 +3,12 @@ import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import { remarkReadingTime } from './src/utils/remark-reading-time.mjs';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://vbesse.com',
-  integrations: [mdx()],
+  integrations: [mdx(), sitemap()],
   markdown: {
     shikiConfig: {
       // Choisis un thème sombre qui contraste bien
