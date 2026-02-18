@@ -1,12 +1,25 @@
 ---
-const {
-	title, // Le titre sera obligatoire sur chaque page
-	description = "Le blog personnel de Valentin. Développement, tech et découvertes.",
-	image = "/paysage-accueil.jpg",
+const { 
+    title = "Le Blog de Valentin Besse", 
+    description = "Bienvenue sur mon blog tech. On parle de code, d'Astro et de legacy.",
+    image 
 } = Astro.props;
 
+// Récupération du slug actuel pour construire l'URL de l'image OG
 // On calcule l'URL "officielle" de la page actuelle pour Google
+// On nettoie le chemin pour éviter les doubles slashs ou les problèmes de trailing slash
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const slug = canonicalURL.pathname
+	.replace(/^\/|\/$/g, "")
+	.split("/")
+	.pop();
+
+// L'URL de l'image générée
+// Si une image manuelle est fournie dans le markdown, on l'utilise.
+// Sinon, on utilise notre image dynamique générée.
+const ogImage = image 
+    ? new URL(image, Astro.site) 
+    : new URL(`/og/${slug}.png`, Astro.site);
 
 import Analytics from "@vercel/analytics/astro";
 import Header from "../components/Header.astro";
@@ -39,17 +52,17 @@ import Footer from "../components/Footer.astro";
 		<title>{title} | vbesse.com</title>
 		<meta name="description" content={description} />
 
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content="article" />
 		<meta property="og:url" content={Astro.url} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content={new URL(image, Astro.url)} />
+		<meta property="og:image" content={ogImage} />
 
 		<meta property="twitter:card" content="summary_large_image" />
 		<meta property="twitter:url" content={Astro.url} />
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
-		<meta property="twitter:image" content={new URL(image, Astro.url)} />
+		<meta property="twitter:image" content={ogImage} />
 
 		<script is:inline>
 			const theme = (() => {
