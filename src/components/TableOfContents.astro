@@ -1,0 +1,98 @@
+---
+const { headings } = Astro.props;
+
+// On filtre pour ne garder que h2 et h3 (h1 est le titre principal, h4 trop petit)
+const toc = headings.filter((h) => h.depth > 1 && h.depth < 4);
+---
+
+<nav class="toc">
+    <h3>Dans cet article</h3>
+    <ul>
+        {
+            toc.map((heading) => (
+                <li class={`toc-level-${heading.depth}`}>
+                    <a href={`#${heading.slug}`}>{heading.text}</a>
+                </li>
+            ))
+        }
+    </ul>
+</nav>
+
+<style>
+    nav.toc {
+        /* On positionne le menu pour qu'il suive le scroll */
+        position: sticky;
+        top: 100px; /* Marge par rapport au haut de l'écran */
+        
+        padding: 1rem;
+        border-left: 2px solid var(--border-color);
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    h3 {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+        color: var(--text-muted);
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        margin-bottom: 0.5rem;
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        transition: color 0.2s, border-left-color 0.2s;
+        display: block;
+    }
+
+    a:hover,
+    a.active {
+        color: var(--accent-color);
+    }
+
+    /* Indentation pour les h3 */
+    .toc-level-3 {
+        padding-left: 1rem;
+        font-size: 0.85rem;
+    }
+</style>
+
+<script>
+    function initTOC() {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    const id = entry.target.getAttribute("id");
+                    const link = document.querySelector(`.toc a[href="#${id}"]`);
+
+                    if (entry.isIntersecting) {
+                        // On retire la classe active de partout
+                        document.querySelectorAll(".toc a").forEach((a) => a.classList.remove("active"));
+                        // On l'ajoute sur le lien courant
+                        link?.classList.add("active");
+                    }
+                });
+            },
+            { rootMargin: "-100px 0px -66% 0px" } // Zone de détection ajustée
+        );
+
+        // On observe tous les h2 et h3 de l'article
+        document.querySelectorAll("article h2, article h3").forEach((h) => {
+            observer.observe(h);
+        });
+    }
+
+    // Compatible avec le ClientRouter (ViewTransitions)
+    document.addEventListener("astro:page-load", initTOC);
+</script>

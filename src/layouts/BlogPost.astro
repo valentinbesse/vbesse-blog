@@ -1,34 +1,41 @@
 ---
 import Layout from "./Layout.astro";
+import TableOfContents from "../components/TableOfContents.astro";
+import ProgressBar from "../components/ProgressBar.astro"; // <--- NOUVEAU
 import { Image } from "astro:assets";
 
-const { 
-    title, 
-    description, 
-    pubDate, 
-    updatedDate, 
-    heroImage, 
-    image, // Au cas où tu utilises 'image' ou 'heroImage'
+const {
+    title,
+    description,
+    pubDate,
+    updatedDate,
+    heroImage,
+    image,
     imageAlt,
     imageCaption,
-    tags, 
+    tags,
     aiDisclaimer,
-    minutesRead 
+    minutesRead,
+    headings,
 } = Astro.props;
+
+// Fallback pour l'image
+const finalImage = heroImage || image;
 ---
 
-<Layout title={title} description={description}>
-    <article class="blog-post">
+<Layout title={title} description={description} image={finalImage}>
+    <ProgressBar />
+
+    <article class="blog-post-container">
         {
-            image && (
+            finalImage && (
                 <figure class="hero-figure">
                     <Image
-                        src={image}
+                        src={finalImage}
                         alt={imageAlt || title}
                         class="hero-image"
                         format="webp"
                     />
-
                     {imageCaption && (
                         <figcaption class="hero-caption">
                             {imageCaption}
@@ -40,41 +47,64 @@ const {
 
         <header class="post-header">
             <h1 class="post-title">{title}</h1>
-    
             <div class="metadata">
-                <p class="post-date">Publié le {pubDate}</p>
-        
-                {minutesRead && (
-                    <span class="separator">•</span>
-                    <p class="reading-time">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                        {minutesRead} min de lecture
-                    </p>
-                )}
+                <p>Publié le {pubDate}</p>
+                {
+                    minutesRead && (
+                        <>
+                            <span class="separator">•</span>
+                            <p class="reading-time">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <>
+                                        <circle cx="12" cy="12" r="10" />
+                                        <polyline points="12 6 12 12 16 14" />
+                                    </>
+                                </svg>
+                                {minutesRead} min de lecture
+                            </p>
+                        </>
+                    )
+                }
             </div>
         </header>
 
-        <div id="progress-container">
-            <div id="progress-bar"></div>
-        </div>
+        <div class="content-wrapper">
+            <div class="post-content prose">
+                <slot />
+            </div>
 
-        <div class="post-content">
-            <slot />
+            {
+                headings && headings.length > 0 && (
+                    <aside class="sidebar">
+                        <TableOfContents headings={headings} />
+                    </aside>
+                )
+            }
         </div>
 
         {
-            aiDisclaimer && (
+            (aiDisclaimer || tags) && (
                 <footer class="post-footer">
                     {tags && (
                         <div class="post-tags">
-                            {tags.map((tag: unknown) => (
+                            {tags.map((tag) => (
                                 <a href={`/tags/${tag}`} class="tag-link">
                                     #{tag}
                                 </a>
                             ))}
                         </div>
                     )}
-                    <p class="ai-note">✨ {aiDisclaimer}</p>
+                    {aiDisclaimer && <p class="ai-note">✨ {aiDisclaimer}</p>}
                 </footer>
             )
         }
@@ -82,11 +112,40 @@ const {
 </Layout>
 
 <style>
-    /* ... Tes styles existants ... */
+    /* MISE EN PAGE PRINCIPALE (GRID) */
+    .blog-post-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Wrapper pour le contenu et la sidebar */
+    .content-wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        position: relative;
+    }
+
+    @media (min-width: 1024px) {
+        .content-wrapper {
+            grid-template-columns: 1fr 300px;
+            gap: 4rem;
+        }
+        .sidebar {
+            display: block;
+        }
+    }
+
+    @media (max-width: 1023px) {
+        .sidebar {
+            display: none;
+        }
+    }
+
+    /* STYLES SPÉCIFIQUES */
     .hero-figure {
         margin: 0 0 2rem 0;
     }
-
     .hero-image {
         width: 100%;
         height: auto;
@@ -94,48 +153,34 @@ const {
         object-fit: cover;
         border-radius: 12px;
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-        display: block;
     }
-
     .hero-caption {
         font-size: 0.85rem;
-        color: #888;
+        color: var(--text-muted);
         text-align: center;
         margin-top: 0.5rem;
         font-style: italic;
     }
 
-    .metadata {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: var(--text-muted); /* Gris adapté au thème */
-        font-size: 0.9rem;
-        margin-bottom: 2rem;
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 2rem;
-    }
-
     .post-header {
         background-color: var(--secondary-bg);
-        padding: 1rem;
+        padding: 2rem;
         border-radius: 12px;
         margin-bottom: 2rem;
     }
-
     .post-title {
         font-size: 2.5rem;
-        line-height: 1.2;
-        margin-bottom: 0.5rem;
+        line-height: 1.1;
+        margin-bottom: 1rem;
         color: var(--text-color);
     }
-
-    .post-date {
-        margin: 0; 
-        border: none;
-        padding: 0;
+    .metadata {
+        display: flex;
+        gap: 0.8rem;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        align-items: center;
     }
-
     .reading-time {
         display: flex;
         align-items: center;
@@ -143,135 +188,27 @@ const {
         margin: 0;
     }
 
-    .icon-clock {
-        margin-bottom: 1px; /* Petit ajustement optique */
-    }
-
-    .separator {
-        color: var(--border-color);
-    }
-
+    /* Contenu Prose (Typographie) */
     .post-content {
         font-size: 1.1rem;
         line-height: 1.8;
-        margin-bottom: 3rem;
-    }
-
-    .post-content img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin: 2rem auto;
-        border-radius: 8px;
-    }
-
-    .post-content pre {
-        position: relative;
-    }
-
-    .post-footer {
-        border-top: 1px solid #eee;
-        padding-top: 1rem;
-        margin-top: 2rem;
-    }
-
-    .post-tags {
-        display: flex;
-        gap: 0.5rem;
-        margin: 1rem 0;
-    }
-
-    .tag-link {
-        color: #0070f3;
-        font-size: 0.9rem;
-        text-decoration: none;
-        background: rgba(0, 112, 243, 0.1); /* Bleu très léger */
-        padding: 0.2rem 0.6rem;
-        border-radius: 4px;
-        transition: background 0.2s;
-    }
-
-    .tag-link:hover {
-        background: rgba(0, 112, 243, 0.2);
-    }
-
-    .ai-note {
-        font-size: 0.85rem;
-        color: #888;
-        font-style: italic;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    :global(.ai-prompt) {
-        background-color: var(--secondary-bg);
-        border-left: 4px solid var(--accent-color);
-        padding: 1.5rem;
-        margin: 2rem 0;
-        border-radius: 0 8px 8px 0;
-        font-family: "Courier New", Courier, monospace;
-        font-size: 0.95rem;
         color: var(--text-color);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        overflow-x: hidden;
+        max-width: 80ch;;
     }
 
-    :global(.ai-prompt ul) {
-        margin-left: 1.5rem;
-        margin-top: 0.5rem;
-    }
-
-    :global(.ai-prompt strong) {
-        color: #0070f3;
-    }
-
-    .title h1 {
-        margin: 0 0 0.5em 0;
-        /* AVANT: color: #333; */
-        color: var(--text-color); /* S'adapte au thème */
-    }
-
-    /* 2. La date et les métadonnées */
-    .date {
-        margin-bottom: 0.5em;
-        /* AVANT: color: #666; */
-        color: var(--text-muted); /* Gris adapté */
-    }
-
-    .last-updated-on {
-        font-style: italic;
-    }
-
-    /* 3. La ligne de séparation (HR) */
-    hr {
-        border: 0;
-        /* AVANT: border-top: 1px solid #ddd; */
-        border-top: 1px solid var(--border-color); /* Bordure subtile */
-        margin: 1rem 0;
-    }
-
-    .post-content {
-        width: 100%; /* S'assure de prendre la largeur disponible */
-        max-width: 100%;
-        color: var(--text-color);
-    }
-
+    /* On cible les éléments globaux du markdown ici */
     .post-content :global(img) {
         max-width: 100%;
         height: auto;
-        display: block;
-        margin: 2rem auto;
         border-radius: 8px;
+        margin: 2rem auto;
     }
-
-    .post-content :global(h1),
     .post-content :global(h2),
-    .post-content :global(h3),
-    .post-content :global(h4) {
-        color: var(--text-color);
+    .post-content :global(h3) {
         margin-top: 2rem;
+        color: var(--text-color);
     }
-
     .post-content :global(a) {
         color: var(--accent-color);
         text-decoration: none;
@@ -279,161 +216,114 @@ const {
     .post-content :global(a:hover) {
         text-decoration: underline;
     }
-
-    .post-content :global(code) {
-        background-color: var(--code-bg);
-        color: var(--text-color);
-        padding: 0.2em 0.4em;
-        border-radius: 4px;
-        font-size: 0.9em;
-    }
-
     .post-content :global(blockquote) {
-        background: var(--secondary-bg);
         border-left: 4px solid var(--accent-color);
-        color: var(--text-muted);
-        margin: 1.5rem 0;
+        background: var(--secondary-bg);
         padding: 1rem;
+        margin: 1.5rem 0;
+        font-style: italic;
     }
 
-    .post-content :global(hr) {
-        border: 0;
-        border-top: 1px solid var(--border-color);
-        margin: 2rem 0;
-    }
-
-    /* =========================================
-       CORRECTION POUR LE BLOC DE CODE ET LE BOUTON
-       ========================================= */
-
-    /* 1. On force le PRE à être relatif (pour caler le bouton) */
+    /* Espace pour le bouton copier */
     .post-content :global(pre) {
         position: relative;
-        padding-top: 2.5rem; /* Espace pour le bouton */
+        padding-top: 2.5rem;
     }
 
-    #progress-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 4px; /* Épaisseur de la barre */
-        background: transparent;
-        z-index: 1001; /* Au-dessus de tout, même du header */
+    /* Footer */
+    .post-footer {
+        border-top: 1px solid var(--border-color);
+        padding-top: 2rem;
+        margin-top: 3rem;
+    }
+    .post-tags {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+    }
+    .tag-link {
+        color: var(--accent-color);
+        background: rgba(0, 112, 243, 0.1);
+        padding: 0.2rem 0.6rem;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+    .ai-note {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        font-style: italic;
     }
 
-    #progress-bar {
-        height: 100%;
-        background: var(--accent-color); /* Ton bleu électrique */
-        width: 0%;
-        transition: width 0.1s;
-    }
-
-    /* 2. On style le bouton qui est généré par JS (donc global) */
+    /* Styles pour le bouton Copy (Injecté par JS) */
     :global(.copy-code) {
-        position: absolute; /* C'est ça qui le place en haut à droite */
+        position: absolute;
         top: 0.5rem;
         right: 0.5rem;
-        z-index: 1;
-
+        z-index: 10;
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
         width: 32px;
         height: 32px;
-
-        background-color: rgba(128, 128, 128, 0.2);
-        border: 1px solid rgba(128, 128, 128, 0.3);
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 6px;
         cursor: pointer;
-        color: var(--text-color);
-        transition: all 0.2s ease;
+        color: var(--text-muted);
+        transition: all 0.2s;
     }
-
     :global(.copy-code:hover) {
         background-color: var(--accent-color);
         color: white;
         border-color: var(--accent-color);
     }
-
     :global(.copy-code.copied) {
         border-color: #10b981;
         color: #10b981;
-        background-color: rgba(16, 185, 129, 0.1);
-    }
-
-    /* Ajustement Light Mode */
-    :global(html:not(.dark) .copy-code) {
-        background-color: rgba(0, 0, 0, 0.05);
-        border-color: rgba(0, 0, 0, 0.1);
-        color: #666;
-    }
-    :global(html:not(.dark) .copy-code:hover) {
-        background-color: rgba(0, 0, 0, 0.1);
-        color: #333;
     }
 </style>
 
 <script>
-    // On attend que le DOM soit chargé
-    document.addEventListener("DOMContentLoaded", () => {
-        // 1. On sélectionne tous les blocs de code générés par Markdown
-        const codeBlocks = Array.from(document.querySelectorAll("pre"));
+    // LOGIQUE "COPY CODE" OPTIMISÉE POUR CLIENT ROUTER
+    const copyIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+    const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
 
-        for (let codeBlock of codeBlocks) {
-            // 2. Création du bouton
-            let wrapper = document.createElement("div");
+    function addCopyButtons() {
+        const codeBlocks = document.querySelectorAll("pre");
+
+        codeBlocks.forEach((codeBlock) => {
+            // Évite de rajouter le bouton si on l'a déjà mis (cas de navigation rapide)
+            if (codeBlock.querySelector(".copy-code")) return;
+
+            const wrapper = document.createElement("div");
             wrapper.style.position = "relative";
 
-            let copyButton = document.createElement("button");
-            copyButton.className = "copy-code";
-            copyButton.innerHTML = copyButtonIcon; // Icône par défaut
+            const button = document.createElement("button");
+            button.className = "copy-code";
+            button.innerHTML = copyIcon;
+            button.ariaLabel = "Copier le code";
 
-            // 3. On insère le bouton DANS le bloc <pre>
-            // Pour que le position:absolute fonctionne, le <pre> doit être relative (voir CSS plus bas)
-            codeBlock.appendChild(copyButton);
+            codeBlock.appendChild(button);
 
-            // 4. L'événement Click
-            copyButton.addEventListener("click", async () => {
-                // On récupère le texte du code (le <code> à l'intérieur du <pre>)
-                const codeElement = codeBlock.querySelector("code");
-                if (!codeElement) return;
-                let code = codeElement.innerText;
+            button.addEventListener("click", async () => {
+                const code = codeBlock.querySelector("code")?.innerText;
+                if (!code) return;
 
-                // On écrit dans le presse-papier
                 await navigator.clipboard.writeText(code);
 
-                // 5. Feedback visuel (On change l'icône)
-                copyButton.innerHTML = checkIcon;
-                copyButton.classList.add("copied");
+                button.innerHTML = checkIcon;
+                button.classList.add("copied");
 
-                // On remet l'icône normale après 2 secondes
                 setTimeout(() => {
-                    copyButton.innerHTML = copyButtonIcon;
-                    copyButton.classList.remove("copied");
+                    button.innerHTML = copyIcon;
+                    button.classList.remove("copied");
                 }, 2000);
             });
-        }
-    });
+        });
+    }
 
-    // Les Icônes SVG (pour ne pas dépendre d'une lib externe)
-    const copyButtonIcon = `
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-  `;
-
-    const checkIcon = `
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-  `;
-</script>
-
-<script>
-    window.addEventListener('scroll', () => {
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        const progressBar = document.getElementById("progress-bar");
-        if (progressBar) {
-            progressBar.style.width = scrolled + "%";
-        }
-    });
+    // Exécution à chaque chargement de page (navigation initiale + SPA)
+    document.addEventListener("astro:page-load", addCopyButtons);
 </script>

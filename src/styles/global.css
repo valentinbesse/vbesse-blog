@@ -37,7 +37,8 @@ body {
 }
 
 main {
-    max-width: 720px;
+    width: 100%; 
+    max-width: 1280px;
     margin: 0 auto;
     padding: 2rem 1rem;
 }
@@ -49,4 +50,9 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Important pour que le titre ne soit pas caché par le Header fixe ! */
 }
