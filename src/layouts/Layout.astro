@@ -8,13 +8,14 @@ const {
     title = "Le Blog de Valentin Besse",
     description = "Bienvenue sur mon blog tech. On parle de code, d'Astro et de legacy.",
     image,
+    schema,
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="fr">
     <head>
-        <BaseHead title={title} description={description} image={image} />
+        <BaseHead title={title} description={description} image={image} schema={schema} />
     </head>
     <body>
         <Header />

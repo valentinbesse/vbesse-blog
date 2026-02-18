@@ -3,6 +3,7 @@ import Layout from "./Layout.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import ProgressBar from "../components/ProgressBar.astro"; // <--- NOUVEAU
 import { Image } from "astro:assets";
+import type { BlogPosting, WithContext } from "schema-dts";
 
 const {
     title,
@@ -21,9 +22,34 @@ const {
 
 // Fallback pour l'image
 const finalImage = heroImage || image;
+
+const imageURL = finalImage
+    ? new URL(finalImage, Astro.site).href
+    : new URL("/og-default.png", Astro.site).href; // Une image par défaut c'est mieux
+
+const articleSchema: WithContext<BlogPosting> = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description: description,
+    image: imageURL,
+    datePublished: new Date(pubDate).toISOString(),
+    dateModified: updatedDate
+        ? new Date(updatedDate).toISOString()
+        : new Date(pubDate).toISOString(),
+    author: {
+        "@type": "Person",
+        name: "Valentin Besse", // Mets ton nom ici
+        url: Astro.site?.href, // Lien vers ta home ou ta page About
+    },
+    mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": Astro.url.href,
+    },
+};
 ---
 
-<Layout title={title} description={description} image={finalImage}>
+<Layout title={title} description={description} image={finalImage} schema={articleSchema}>
     <ProgressBar />
 
     <article class="blog-post-container" data-pagefind-body>
@@ -194,7 +220,7 @@ const finalImage = heroImage || image;
         line-height: 1.8;
         color: var(--text-color);
         overflow-x: hidden;
-        max-width: 80ch;;
+        max-width: 80ch;
     }
 
     /* On cible les éléments globaux du markdown ici */
