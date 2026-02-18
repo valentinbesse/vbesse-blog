@@ -3,12 +3,28 @@ import "@pagefind/default-ui/css/ui.css";
 ---
 
 <button id="search-trigger" aria-label="Rechercher (Cmd+K)">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><circle cx="11" cy="11" r="8"></circle><line
+            x1="21"
+            y1="21"
+            x2="16.65"
+            y2="16.65"></line></svg
+    >
 </button>
 
 <dialog id="search-dialog">
     <div class="dialog-content">
-        <div id="pagefind-search"></div> <form method="dialog">
+        <div id="pagefind-search"></div>
+        <form method="dialog">
             <button class="close-btn" aria-label="Fermer">✕</button>
         </form>
     </div>
@@ -93,7 +109,7 @@ import "@pagefind/default-ui/css/ui.css";
         font-size: 1.1rem;
         border-radius: 8px;
     }
-    
+
     :global(.pagefind-ui .pagefind-ui__drawer) {
         max-height: 60vh;
         overflow-y: auto;
@@ -101,59 +117,70 @@ import "@pagefind/default-ui/css/ui.css";
 </style>
 
 <script>
-    // On importe la classe UI depuis le package installé
     import { PagefindUI } from "@pagefind/default-ui";
-
-    let uiInstance = null;
 
     function initSearch() {
         const dialog = document.getElementById("search-dialog");
         const trigger = document.getElementById("search-trigger");
         const closeBtn = document.querySelector(".close-btn");
-
-        if (!dialog || !trigger) return;
-
-        // 1. Initialiser Pagefind (une seule fois pour éviter les doublons)
         const searchDiv = document.getElementById("pagefind-search");
-        if (searchDiv && searchDiv.innerHTML === "") {
-             uiInstance = new PagefindUI({
+
+        if (!dialog || !trigger || !searchDiv) return;
+
+        // 1. Initialiser Pagefind (si pas déjà fait)
+        if (searchDiv.innerHTML === "") {
+             new PagefindUI({
                 element: "#pagefind-search",
                 showSubResults: true,
                 showImages: false,
                 translations: {
-                    placeholder: "Rechercher un article...",
+                    placeholder: "Rechercher...",
                     clear_search: "Effacer",
-                    zero_results: "Aucun résultat pour [SEARCH_TERM]"
+                    zero_results: "Rien trouvé pour [SEARCH_TERM]"
                 }
             });
         }
 
-        // 2. Gestion ouverture/fermeture
+        // Fonctions d'ouverture/fermeture
         const openModal = () => dialog.showModal();
         const closeModal = () => dialog.close();
 
-        trigger.addEventListener("click", openModal);
+        // 2. Listeners classiques
+        trigger.addEventListener("click", (e) => {
+            e.stopPropagation(); // Évite les conflits
+            openModal();
+        });
+        
         closeBtn?.addEventListener("click", closeModal);
 
-        // Fermer en cliquant à l'extérieur (sur le backdrop)
         dialog.addEventListener("click", (e) => {
             const rect = dialog.getBoundingClientRect();
             const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
               rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
-            if (!isInDialog) {
-                dialog.close();
+            if (!isInDialog) closeModal();
+        });
+
+        // 3. LE FIX : Fermer quand on clique sur un lien de résultat
+        // Pagefind crée ses liens dynamiquement, on écoute donc le conteneur parent
+        searchDiv.addEventListener("click", (e) => {
+            if (e.target.tagName === "A" || e.target.closest("a")) {
+                closeModal();
             }
         });
 
-        // 3. Raccourci Clavier (Cmd+K ou Ctrl+K)
+        // 4. LE FIX ULTIME : Fermer après chaque navigation Astro
+        // Si jamais le clic n'a pas suffi, Astro fermera la modale après la transition
+        document.addEventListener("astro:after-swap", closeModal);
+
+        // Raccourci Clavier
         document.addEventListener("keydown", (e) => {
             if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-                e.preventDefault(); // Empêche le comportement navigateur
+                e.preventDefault();
                 dialog.open ? closeModal() : openModal();
             }
         });
     }
 
-    // Compatible avec ClientRouter
+    // On lance au chargement initial et après chaque navigation
     document.addEventListener("astro:page-load", initSearch);
 </script>
