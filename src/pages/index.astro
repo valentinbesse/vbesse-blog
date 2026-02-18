@@ -146,19 +146,26 @@ import Layout from "../layouts/Layout.astro";
 		gap: 1rem;
 		flex-wrap: wrap;
 		justify-content: center;
-		width: 100%;
 		margin: 2rem auto;
+		width: 100%;
 	}
+
+
 
 	@media (max-width: 600px) {
 		.button-group {
+			display: flex;
 			flex-direction: column;
 			width: 100%;
+			max-width: 100%;
 			padding: 0 1rem;
+			box-sizing: border-box;
+			gap: 1rem;
 		}
 
 		.button {
 			width: 100%;
+			max-width: 100%;
 			box-sizing: border-box;
 			margin: 0;
 			white-space: nowrap;
