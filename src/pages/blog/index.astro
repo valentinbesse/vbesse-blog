@@ -38,7 +38,7 @@ const posts = (await getCollection('blog')).sort(
     }
 
     .subtitle {
-        color: #666;
+        color: var(--text-muted);
         font-size: 1.2rem;
         margin-bottom: 3rem;
     }
@@ -81,7 +81,7 @@ const posts = (await getCollection('blog')).sort(
 
     .post-desc {
         margin-top: 0.5rem;
-        color: #555;
+        color: var(--text-muted);
         font-size: 1rem;
     }
 </style>
