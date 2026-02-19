@@ -16,18 +16,35 @@ const {
 <html lang="fr">
     <head>
         <BaseHead
-            title={title}
-            description={description}
-            image={image}
-            schema={schema}
+        title={title}
+        description={description}
+        image={image}
+        schema={schema}
         />
     </head>
     <body>
+        <a href="#main-content" class="skip-link">Aller au contenu principal</a>
         <Header />
-        <main>
+        <main id="#main-content">
             <slot />
         </main>
         <Footer />
         <Analytics />
     </body>
 </html>
+
+<style>
+    .skip-link {
+    position: absolute;
+    top: -40px; /* Caché par défaut */
+    left: 0;
+    background: var(--accent-color);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+    transition: top 0.3s;
+  }
+  .skip-link:focus {
+    top: 0; /* Apparaît uniquement quand on tabule dessus */
+  }
+</style>

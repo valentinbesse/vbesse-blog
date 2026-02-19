@@ -16,7 +16,10 @@ const isActive = (href) => {
         </a>
 
         <div class="actions">
-            <button id="theme-toggle" aria-label="Changer le thème">
+            <button
+                id="theme-toggle"
+                aria-label="Basculer entre le mode clair et sombre"
+            >
                 <svg
                     class="sun"
                     xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +71,12 @@ const isActive = (href) => {
             <Search />
         </div>
 
-        <button id="menu-toggle" aria-label="Menu" aria-expanded="false">
+        <button
+            id="menu-toggle"
+            aria-label="Ouvrir le menu de navigation"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+        >
             <svg
                 class="icon-menu"
                 width="24"
@@ -117,15 +125,18 @@ const isActive = (href) => {
 
 <script>
     const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
     const navLinks = document.querySelector(".nav-links");
 
     if (menuToggle && navLinks) {
         menuToggle.addEventListener("click", () => {
             const isExpanded =
                 menuToggle.getAttribute("aria-expanded") === "true";
-            menuToggle.setAttribute("aria-expanded", !isExpanded);
+            menuToggle.setAttribute("aria-expanded", String(!isExpanded));
+            mobileMenu?.setAttribute("aria-hidden", String(isExpanded));
             navLinks.classList.toggle("expanded");
             menuToggle.classList.toggle("open");
+            mobileMenu?.classList.toggle("is-open");
         });
     }
 </script>
@@ -313,7 +324,10 @@ const isActive = (href) => {
             newMenuToggle.addEventListener("click", () => {
                 const isExpanded =
                     newMenuToggle.getAttribute("aria-expanded") === "true";
-                newMenuToggle.setAttribute("aria-expanded", !isExpanded);
+                newMenuToggle.setAttribute(
+                    "aria-expanded",
+                    String(!isExpanded),
+                );
                 navLinksContainer?.classList.toggle("expanded");
                 newMenuToggle.classList.toggle("open");
             });
