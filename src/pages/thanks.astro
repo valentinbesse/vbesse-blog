@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Message envoyé ! | vbesse.com">
+  <div class="thanks-container">
+    <div class="icon">✅</div>
+    <h1>Merci beaucoup !</h1>
+    <p>Votre message a bien été envoyé. Je fais de mon mieux pour vous répondre sous 48h.</p>
+    
+    <a href="/" class="button primary">Retour à l'accueil</a>
+  </div>
+</Layout>
+
+<style>
+  .thanks-container {
+    max-width: 600px;
+    margin: 8rem auto;
+    text-align: center;
+    padding: 0 1.5rem;
+  }
+  .icon { font-size: 4rem; margin-bottom: 1rem; }
+  h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+  p { font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-muted); }
+</style>
