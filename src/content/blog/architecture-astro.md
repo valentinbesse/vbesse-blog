@@ -27,7 +27,7 @@ Un Layout monolithique souffre de trois défauts majeurs :
 
 J'ai déconstruit mon architecture en couches spécialisées. Au lieu d'un seul bloc, j'utilise maintenant une imbrication de layouts.
 
-### 1. La Base (BaseLayout.astro)
+### 1. La Base
 
 C'est le squelette HTML pur. Il ne contient que ce qui est **commun à 100% du site** :
 
@@ -36,7 +36,7 @@ C'est le squelette HTML pur. Il ne contient que ce qui est **commun à 100% du s
 - La structure `<body>` avec le `<Header />` et le `<Footer />`.
 - Le composant `<ClientRouter />` pour les transitions fluides.
 
-### 2. La Couche SEO (SEO.astro)
+### 2. La Couche SEO
 
 Plutôt que de gérer les balises OpenGraph (pour LinkedIn/Bluesky) directement dans le layout, j'ai créé un composant dédié. Il reçoit des props et génère les balises dynamiquement.
 
