@@ -9,9 +9,24 @@ const slug = canonicalURL.pathname
     .replace(/^\/|\/$/g, "")
     .split("/")
     .pop();
-const ogImage = image
-    ? new URL(image, Astro.site)
-    : new URL(`/og/${slug}.png`, Astro.site);
+
+let imagePath;
+
+if (image) {
+    // Cas A : Une image est explicitement fournie (depuis ton frontmatter)
+    // On extrait le .src si c'est un objet, sinon on garde la string
+    imagePath = typeof image === 'object' ? image.src : image;
+} else if (slug) {
+    // Cas B : Pas d'image fournie MAIS c'est une page d'article
+    // On utilise l'image générée automatiquement par Satori !
+    imagePath = `/og/${slug}.png`;
+} else {
+    // Cas C : Le fallback par défaut (pour l'accueil, la page contact...)
+    imagePath = '/default-image.png';
+}
+
+const socialImageURL = new URL(imagePath, Astro.site).href;
+
 ---
 
 <meta charset="UTF-8" />
@@ -38,13 +53,13 @@ const ogImage = image
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={ogImage} />
+<meta property="og:image" content={socialImageURL} />
 
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={ogImage} />
+<meta property="twitter:image" content={socialImageURL} />
 
 {
     schema && (
