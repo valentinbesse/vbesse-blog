@@ -51,7 +51,7 @@ Si votre article est un guide, laissez vos lecteurs sauter directement à la sec
 
 Lors du rendu de votre contenu, Astro vous fournit une propriété `headings` que vous pouvez utiliser pour construire votre menu.
 
-``` Astro
+```astro
 ---
 // Dans votre composant d'article
 const { post } = Astro.props;
