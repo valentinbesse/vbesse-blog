@@ -2,7 +2,7 @@
 title: "Redonner le pouvoir aux lecteurs : Ajouter un flux RSS natif en 5 minutes"
 description: "Fuyez les algorithmes ! Découvrez comment générer un flux RSS valide en quelques lignes de code sur votre blog Astro."
 pubDate: "2026-02-24"
-image: "../../assets/rss-feed-astro.png"
+image: "../../../assets/rss-feed-astro.png"
 imageAlt: "Illustration d'un flux d'ondes orange vif symbolisant le protocole RSS, traversant un paysage numérique épuré. Image générée par IA."
 imageCaption: "Le web indépendant fait de la résistance. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."

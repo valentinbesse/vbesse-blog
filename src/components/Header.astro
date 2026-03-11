@@ -1,6 +1,7 @@
 ---
 // src/components/Header.astro
 import Search from "./Search.astro";
+import LanguagePicker from "./LanguagePicker.astro";
 
 const { pathname } = Astro.url;
 const isActive = (href) => {
@@ -120,6 +121,7 @@ const isActive = (href) => {
                 >À propos</a
             >
             <a href="/contact">Contact</a>
+            <LanguagePicker />
         </div>
     </nav>
 </header>

@@ -2,7 +2,7 @@
 title: "Architecture Astro : Pourquoi j'ai éclaté mon Layout monolithique"
 description: "Découvrez pourquoi séparer votre Layout principal en sous-couches spécialisées est la clé d'un blog Astro maintenable et évolutif."
 pubDate: "2026-02-20"
-image: "../../assets/architecture-modulaire.png"
+image: "../../../assets/architecture-modulaire.png"
 imageAlt: "Illustration montrant des blocs cubiques colorés s'emboîtant de manière modulaire, symbolisant une architecture logicielle propre et décomposée. Image générée par IA."
 imageCaption: "Passer d'un bloc monolithique à une structure modulaire : la clé d'un code maintenable. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."

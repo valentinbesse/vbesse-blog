@@ -2,7 +2,7 @@
 title: "3 micro-fonctionnalités pour une UX de lecture parfaite"
 description: "Le contenu est roi, mais l'expérience utilisateur est reine. Découvrez comment implémenter une barre de progression, un sommaire et un bouton de copie sur votre blog Astro."
 pubDate: "2026-03-09"
-image: "../../assets/astro-ux-micro-features.png"
+image: "../../../assets/astro-ux-micro-features.png"
 imageAlt: "Une loupe géante mettant en évidence trois petits rouages dorés sur une interface web, symbolisant les détails de l'UX. Image générée par IA."
 imageCaption: "Le diable (et l'UX) se cache dans les détails. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."

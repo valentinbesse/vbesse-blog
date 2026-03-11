@@ -2,7 +2,7 @@
 title: "Dark Mode sans flash : L'implémentation parfaite avec Astro et CSS Variables"
 description: "Marre de brûler la rétine de vos visiteurs avec un flash blanc au chargement ? Découvrez comment créer un Dark Mode parfait et persistant avec Astro."
 pubDate: "2026-03-06"
-image: "../../assets/astro-dark-mode-flash.png"
+image: "../../../assets/astro-dark-mode-flash.png"
 imageAlt: "Une lune et un soleil divisant un écran d'ordinateur, avec un bouclier bloquant un rayon de lumière intense, symbolisant la protection contre le flash blanc. Image générée par IA."
 imageCaption: "Protéger les rétines de vos utilisateurs, une ligne de code à la fois. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."

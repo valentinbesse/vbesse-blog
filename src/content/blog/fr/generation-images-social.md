@@ -2,7 +2,7 @@
 title: "Fini les liens tristes : Générer des images sociales (OG) automatiques avec Astro"
 description: "Marre de créer une image sur Figma pour chaque article ? Découvrez comment générer vos images OpenGraph dynamiquement à la compilation avec Astro et Satori."
 pubDate: "2026-02-23"
-image: "../../assets/og-images-automation.png"
+image: "../../../assets/og-images-automation.png"
 imageAlt: "Illustration montrant du code se transformant automatiquement en cartes de prévisualisation pour les réseaux sociaux. Image générée par IA."
 imageCaption: "De la donnée brute à la prévisualisation sociale : l'automatisation au service du partage. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."

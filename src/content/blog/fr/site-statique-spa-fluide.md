@@ -2,7 +2,7 @@
 title: "L'illusion parfaite : Transformer un site statique en SPA fluide avec Astro ClientRouter"
 description: "Découvrez comment le composant ClientRouter d'Astro utilise l'API View Transitions pour transformer votre site statique en une application ultra-fluide sans le poids d'un framework JavaScript."
 pubDate: "2026-03-04"
-image: "../../assets/astro-client-router-spa.png"
+image: "../../../assets/astro-client-router-spa.png"
 imageAlt: "Un portail magique reliant deux pages web de manière fluide et transparente. Image générée par IA."
 imageCaption: "Naviguer sans recharger. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."

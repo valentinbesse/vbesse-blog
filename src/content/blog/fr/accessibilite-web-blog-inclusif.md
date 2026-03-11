@@ -2,7 +2,7 @@
 title: "L'accessibilité par l'exemple : Rendre son blog inclusif sans effort"
 description: "Pourquoi et comment j'ai rendu ce blog accessible (a11y), du ratio de contraste aux attributs ARIA, avec des conseils didactiques."
 pubDate: "2026-02-19"
-image: "../../assets/handicap.webp"
+image: "../../../assets/handicap.webp"
 imageAlt: "Un groupe de personnes avec différents handicaps (visuel, moteur, auditif) interagissant avec des appareils numériques, illustrant l'inclusivité et l'accessibilité web."
 imageCaption: "Les quatre piliers de l'accessibilité numérique : contraste visuel, navigation clavier, clarté sémantique et inclusion universelle. Image issue du blog ippon.fr."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."

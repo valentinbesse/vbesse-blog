@@ -2,7 +2,7 @@
 title: "Astro ClientRouter : Le piège du Menu Mobile persistant"
 description: "Vous venez d'activer les View Transitions sur Astro, mais votre menu hamburger fait n'importe quoi ? Découvrez pourquoi et comment corriger le cycle de vie de votre JavaScript."
 pubDate: "2026-03-05"
-image: "../../assets/astro-mobile-menu-bug.png"
+image: "../../../assets/astro-mobile-menu-bug.png"
 imageAlt: "Un smartphone affichant un menu de navigation emmêlé dans des toiles d'araignées numériques, symbolisant un script bloqué. Image générée par IA."
 imageCaption: "Ne laissez pas votre menu mobile se transformer en piège. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."

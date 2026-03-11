@@ -3,13 +3,17 @@ const { headings } = Astro.props;
 
 // On filtre pour ne garder que h2 et h3 (h1 est le titre principal, h4 trop petit)
 const toc = headings.filter((h) => h.depth > 1 && h.depth < 4);
+
+const { pathname } = Astro.url;
+const isEnglish = pathname.startsWith('/en/') || pathname === '/en';
+const tocTitle = isEnglish ? "In this article" : "Dans cet article";
 ---
 
 <nav class="toc">
-    <h3>Dans cet article</h3>
+    <h3>{tocTitle}</h3>
     <ul>
         {
-            toc.map((heading) => (
+            toc.map((heading: { depth: any; slug: any; text: unknown; }) => (
                 <li class={`toc-level-${heading.depth}`}>
                     <a href={`#${heading.slug}`}>{heading.text}</a>
                 </li>

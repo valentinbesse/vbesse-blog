@@ -2,7 +2,7 @@
 title: "Formulaires sans Backend : Intercepter Formspree avec AJAX pour une UX fluide"
 description: "Ne laissez plus Formspree rediriger vos utilisateurs ! Découvrez comment utiliser AJAX pour envoyer vos formulaires de contact en arrière-plan sur votre site Astro."
 pubDate: "2026-03-03"
-image: "../../assets/formspree-ajax-astro.png"
+image: "../../../assets/formspree-ajax-astro.png"
 imageAlt: "Une enveloppe lumineuse traversant un portail numérique, symbolisant l'envoi de données en arrière-plan sans rechargement. Image générée par IA."
 imageCaption: "L'art de l'envoi silencieux. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."

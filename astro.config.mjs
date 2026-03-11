@@ -8,18 +8,19 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://vbesse.com',
+  i18n: {
+    defaultLocale: 'fr',
+    locales: ['fr', 'en'],
+    routing: {
+      prefixDefaultLocale: false, // Ne rajoute pas /fr/ aux URLs existantes
+    },
+  },
   integrations: [mdx(), sitemap()],
   markdown: {
     shikiConfig: {
-      // Choisis un thème sombre qui contraste bien
-      // 'dracula', 'github-dark', 'one-dark-pro' sont tops
+      // Thème sombre qui contraste bien
       theme: 'dracula',
-
-      // ASTUCE PRO :
-      // Si tu veux aller plus loin plus tard, Astro permet le double thème
-      // themes: { light: 'github-light', dark: 'github-dark' },
     },
-    // 2. Ajoute-le à la liste des plugins remark
     remarkPlugins: [remarkReadingTime],
   },
 });

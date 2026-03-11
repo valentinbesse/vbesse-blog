@@ -47,6 +47,20 @@ const articleSchema: WithContext<BlogPosting> = {
         "@id": Astro.url.href,
     },
 };
+
+// On adatpe le titre du publish date selon la langue (fr/en) pour le rendre plus naturel
+const { pathname } = Astro.url;
+const isEnglish = pathname.startsWith('/en/') || pathname === '/en';
+const publishTitle = isEnglish ? "Published on" : "Publié le";
+const pubDateFormatted = new Date(pubDate).toLocaleDateString(isEnglish ? 'en-US' : 'fr-FR', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+});
+const pubDateDisplay = `${publishTitle} ${pubDateFormatted}`;
+// On adapte aussi le texte du temps de lecture
+const minutesReadDisplay = isEnglish ? `${minutesRead} min read` : `${minutesRead} min de lecture`;
+
 ---
 
 <Layout title={title} description={description} image={finalImage} schema={articleSchema}>
@@ -74,7 +88,7 @@ const articleSchema: WithContext<BlogPosting> = {
         <header class="post-header">
             <h1 class="post-title">{title}</h1>
             <div class="metadata">
-                <p>Publié le {pubDate}</p>
+                <p>{pubDateDisplay}</p>
                 {
                     minutesRead && (
                         <>
@@ -96,7 +110,7 @@ const articleSchema: WithContext<BlogPosting> = {
                                         <polyline points="12 6 12 12 16 14" />
                                     </>
                                 </svg>
-                                {minutesRead} min de lecture
+                                {minutesReadDisplay}
                             </p>
                         </>
                     )

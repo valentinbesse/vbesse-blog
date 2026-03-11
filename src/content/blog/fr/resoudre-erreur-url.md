@@ -2,7 +2,7 @@
 title: "Astro & SEO : Résoudre l'erreur d'URL [object Object] sur vos images OpenGraph"
 description: "Vos images sociales ont disparu sur LinkedIn ou Bluesky ? Découvrez pourquoi Astro génère parfois un [object Object] dans vos balises meta et comment le corriger définitivement."
 pubDate: "2026-02-25"
-image: "../../assets/astro-seo-bug.png"
+image: "../../../assets/astro-seo-bug.png"
 imageAlt: "Un insecte (bug) numérique essayant de lire un code source flou avec la mention object Object. Image générée par IA."
 imageCaption: "Le cauchemar des développeurs JavaScript a encore frappé. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."

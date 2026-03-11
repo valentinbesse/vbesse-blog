@@ -1,16 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
+import BlogPost from '../../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
-  // 1. On ne récupère que les articles français
+  // 1. On ne récupère que les articles anglais
   const posts = await getCollection('blog', ({ id }) => {
-    return id.startsWith('fr/');
+    return id.startsWith('en/');
   });
 
   return posts.map((post) => {
-    // 2. On retire 'fr/' du slug pour que l'URL reste propre (/blog/mon-article/)
-    const cleanSlug = post.slug.replace('fr/', '');
+    // 2. On retire 'en/' du slug pour que l'URL reste propre (/blog/mon-article/)
+    const cleanSlug = post.slug.replace('en/', '');
     
     return {
       params: { slug: cleanSlug },

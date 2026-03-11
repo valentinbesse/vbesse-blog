@@ -2,7 +2,7 @@
 title: "Cmd+K pour tous : Intégrer une recherche instantanée avec Pagefind"
 description: "Offrez à vos utilisateurs une expérience de navigation premium avec une barre de recherche globale Cmd+K sur votre site statique Astro, propulsée par Pagefind."
 pubDate: "2026-03-10"
-image: "../../assets/astro-pagefind-cmdk.png"
+image: "../../../assets/astro-pagefind-cmdk.png"
 imageAlt: "Un clavier d'ordinateur lumineux avec les touches Cmd et K en surbrillance, générant un rayon de lumière vers une barre de recherche. Image générée par IA."
 imageCaption: "La recherche instantanée, la touche premium de votre blog. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."

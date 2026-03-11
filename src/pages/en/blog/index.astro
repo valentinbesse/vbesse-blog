@@ -1,0 +1,17 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import BlogList from '../../../components/BlogList.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ id }) => id.startsWith('en/')))
+    .sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
+---
+
+<Layout title="The Blog">
+    <BlogList 
+        title="The Blog" 
+        subtitle="My writings, tutorials and thoughts." 
+        posts={posts} 
+        basePath="/en/blog/" 
+    />
+</Layout>

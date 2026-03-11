@@ -2,7 +2,7 @@
 title: "Apprivoiser le Legacy : Transformer la dette en opportunité"
 description: "Le code legacy n'est pas une fatalité. Stratégies, tests et refactoring : comment reprendre le contrôle d'un projet sans tout réécrire."
 pubDate: "2026-02-15"
-image: "../../assets/legacy-repair.png"
+image: "../../../assets/legacy-repair.png"
 imageAlt: "Un horloger futuriste réparant avec précision un mécanisme ancien et complexe composé d'engrenages dorés et poussiéreux."
 imageCaption: "Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA (Correction et mise en forme)."

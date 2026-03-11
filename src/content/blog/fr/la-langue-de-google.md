@@ -2,7 +2,7 @@
 title: "Parler la langue de Google : JSON-LD et SEO technique automatisé"
 description: "Arrêtez de laisser Google deviner le contenu de vos pages. Apprenez à générer automatiquement des données structurées JSON-LD avec Astro pour booster votre SEO."
 pubDate: "2026-02-26"
-image: "../../assets/json-ld-astro-seo.png"
+image: "../../../assets/json-ld-astro-seo.png"
 imageAlt: "Un robot de moteur de recherche lisant un parchemin numérique contenant du code JSON structuré. Image générée par IA."
 imageCaption: "Donnez à Google les clés de votre contenu. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
