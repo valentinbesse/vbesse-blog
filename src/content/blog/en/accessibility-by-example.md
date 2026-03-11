@@ -65,6 +65,7 @@ A screen reader (used by blind or visually impaired people) doesn't "see" that y
 ### ARIA Labels
 
 If your button only contains an SVG, it's mute to a machine.
+
 * **Clear example**: A magnifying glass button must have an `aria-label="Search"`.
 
 ### Dynamic State: aria-expanded
@@ -84,6 +85,7 @@ Why is it important?
 Screen reading software can list all the headings on the page to understand the article's outline. If levels are missing (jumping from H1 to H3), the perceived "outline" is inconsistent.
 
 So what should you do?
+
 * **H1**: Only one per page (the article's title).
 * **H2**: Your main sections.
 * **H3**: Your subsections.
@@ -93,6 +95,7 @@ If you want to change the visual size, use CSS (e.g., `.title-large`), not the H
 ## Conclusion: Is my site accessible?
 
 To find out, do these three simple tests right now:
+
 * **The Keyboard Test**: Can you navigate your entire site and use all functions (search, dark mode) without touching your mouse?
 * **The Sun Test**: Try reading your site with your screen brightness reduced by half. Is the text still readable?
 * **The Automated Tool**: Use the Lighthouse tab (in Chrome) or the Axe DevTools extension. They will list your priority errors.

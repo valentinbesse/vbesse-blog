@@ -17,9 +17,9 @@ Récemment, j'ai pris la décision de bouger. Voici pourquoi je pense qu'il est 
 
 ## Le piège du confort
 
-Il est facile de rester. On connaît les collègues, on maîtrise la stack technique, on sait à qui demander quoi. C'est ce qu'on appelle la "zone de confort". 
+Il est facile de rester. On connaît les collègues, on maîtrise la stack technique, on sait à qui demander quoi. C'est ce qu'on appelle la "zone de confort".
 
-Mais le confort a un prix : l'arrêt de l'apprentissage. 
+Mais le confort a un prix : l'arrêt de l'apprentissage.
 
 Le quotidien est confortable, à tel point que l'on peut prédire chaque jour de la semaine. Mais ce confort est traître. Sans m'en rendre compte, ma courbe d'apprentissage s'était aplatie.
 
@@ -27,13 +27,14 @@ Le quotidien est confortable, à tel point que l'on peut prédire chaque jour de
 
 Comment savoir qu'il est temps de partir ? Pour moi, il y a quelques indicateurs clairs :
 
-1.  **L'ennui :** Quand les tâches deviennent automatiques et répétitives.
-2.  **La stagnation technique :** Il y a toujours à apprendre du métier, mais parfois il n'y a plus lieu d'améliorer sa technique dans son poste actuel.
-3.  **Le plafond de verre :** Quand on sent qu'on ne pourra plus évoluer, ni en poste, ni en salaire.
+1. **L'ennui :** Quand les tâches deviennent automatiques et répétitives.
+2. **La stagnation technique :** Il y a toujours à apprendre du métier, mais parfois il n'y a plus lieu d'améliorer sa technique dans son poste actuel.
+3. **Le plafond de verre :** Quand on sent qu'on ne pourra plus évoluer, ni en poste, ni en salaire.
 
 ## Le changement comme accélérateur
 
 Changer d'entreprise, ce n'est pas juste changer de bureau. C'est un "reset" bénéfique.
+
 * **Techniquement :** On découvre de nouveaux outils (comme je le fais avec Astro en ce moment !).
 * **Humainement :** On se confronte à de nouvelles cultures d'équipe.
 * **Professionnellement :** C'est souvent le seul moyen réel de faire un saut salarial significatif, de revaloriser son profil sur le marché et d'obtenir plus de responsabilités.

@@ -9,18 +9,18 @@ aiDisclaimer: "Article écrit avec l'aide de l'IA."
 tags: ["Astro", "JavaScript", "UX", "Performance", "SPA"]
 ---
 
-Le monde du développement web a longtemps été divisé en deux camps. 
+Le monde du développement web a longtemps été divisé en deux camps.
 
 D'un côté, les puristes du **Site Statique (MPA)** : des temps de chargement imbattables, un SEO parfait, mais un "clignotement" blanc à chaque changement de page car le navigateur détruit et recrée tout le DOM.
 De l'autre, les fans de la **Single Page Application (SPA)** avec React, Vue ou Angular : une navigation ultra-fluide sans rechargement, mais au prix d'un lourd bundle JavaScript à télécharger et d'une complexité accrue.
 
-Et si je vous disais qu'avec Astro, vous pouvez avoir le beurre et l'argent du beurre ? Un site 100% statique généré côté serveur, mais qui se comporte exactement comme une SPA fluide côté client. 
+Et si je vous disais qu'avec Astro, vous pouvez avoir le beurre et l'argent du beurre ? Un site 100% statique généré côté serveur, mais qui se comporte exactement comme une SPA fluide côté client.
 
 La magie tient en un seul composant : `<ClientRouter />`.
 
 ## Comment ça marche ?
 
-Astro s'appuie sur une technologie récente des navigateurs appelée **View Transitions API**. 
+Astro s'appuie sur une technologie récente des navigateurs appelée **View Transitions API**.
 
 Plutôt que de laisser le navigateur recharger brutalement la page complète lors d'un clic sur un lien, Astro intercepte ce clic. Il va chercher le HTML de la nouvelle page en arrière-plan, puis il "fusionne" intelligemment l'ancien DOM avec le nouveau, en animant la transition entre les deux.
 
