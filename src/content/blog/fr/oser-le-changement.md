@@ -7,6 +7,7 @@ imageAlt: "Un randonneur avec un sac à dos regarde un croisement : une route pl
 imageCaption: "Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
 tags: ["Carrière", "Side Project", "Apprentissage", "Mindset"]
+translation: "dare-to-change-seize-opportunities"
 ---
 
 On entend souvent dire que la loyauté envers une entreprise est une vertu cardinale. Que rester longtemps au même endroit est un gage de stabilité. Pourtant, dans nos métiers, la stabilité peut vite ressembler à de la stagnation.

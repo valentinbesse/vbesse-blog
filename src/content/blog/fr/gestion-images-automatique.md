@@ -7,6 +7,7 @@ imageAlt: "Un schéma technique montrant une image brute entrant dans un entonno
 imageCaption: "Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
 tags: ["Astro", "Web Perf", "Images", "Automation", "DX"]
+translation: "automated-image-optimization-pipeline"
 ---
 
 L'autre jour, j'ai voulu publier un article rapidement. J'ai généré une image de couverture avec l'IA, je l'ai uploadée, et j'ai poussé le tout en ligne.

@@ -1,0 +1,77 @@
+---
+// src/components/TagDetailWrapper.astro
+---
+
+<div class="tag-detail-wrapper">
+    <slot />
+</div>
+
+<style is:global>
+    .tag-detail-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+
+    .tag-detail-wrapper h1 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .tag-detail-wrapper .highlight {
+        color: var(--accent-color, #0070f3);
+    }
+
+    .tag-detail-wrapper .post-list {
+        margin-top: 2rem;
+        list-style: none;
+        padding: 0;
+    }
+
+    .tag-detail-wrapper .post-list li {
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media (min-width: 640px) {
+        .tag-detail-wrapper .post-list li {
+            flex-direction: row;
+            align-items: baseline;
+            justify-content: space-between;
+        }
+    }
+
+    .tag-detail-wrapper .post-list a {
+        text-decoration: none;
+        color: var(--text-color, #111);
+        font-weight: 600;
+        transition: color 0.2s;
+    }
+
+    .tag-detail-wrapper .post-list a:hover {
+        color: var(--accent-color, #0070f3);
+    }
+
+    .tag-detail-wrapper .date {
+        color: var(--text-muted, #666);
+        font-size: 0.9rem;
+    }
+
+    .tag-detail-wrapper .back-link {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color, #eee);
+    }
+
+    .tag-detail-wrapper .back-link a {
+        color: var(--accent-color, #0070f3);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .tag-detail-wrapper .back-link a:hover {
+        text-decoration: underline;
+    }
+</style>

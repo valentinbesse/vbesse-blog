@@ -1,66 +1,48 @@
 ---
 // src/components/LanguagePicker.astro
-
-// On récupère le chemin de l'URL actuelle (ex: "/blog/" ou "/en/blog/")
-const { pathname } = Astro.url;
-
-let currentLang = 'fr';
-let alternateUrl = '';
-
-// Logique pour détecter la langue et construire l'URL de l'autre langue
-if (pathname.startsWith('/en/') || pathname === '/en') {
-  currentLang = 'en';
-  // Si on est en anglais, on enlève le '/en' pour revenir au français
-  alternateUrl = pathname.replace(/^\/en/, '') || '/';
-} else {
-  currentLang = 'fr';
-  // Si on est en français, on ajoute '/en' au début du chemin
-  alternateUrl = `/en${pathname === '/' ? '' : pathname}`;
-}
+const currentLocale = Astro.currentLocale || "fr";
 ---
 
 <div class="lang-picker">
-  {currentLang === 'fr' ? (
-    <a href={alternateUrl} class="lang-btn" aria-label="Switch to English version" title="English">
-      🇬🇧 EN
-    </a>
-  ) : (
-    <a href={alternateUrl} class="lang-btn" aria-label="Passer à la version française" title="Français">
-      🇫🇷 FR
-    </a>
-  )}
+    <a
+        href="/"
+        class={currentLocale === "fr" ? "active" : ""}
+        data-lang="fr"
+        aria-label="Passer en français">FR</a
+    >
+    <span class="divider">|</span>
+    <a
+        href="/en/"
+        class={currentLocale === "en" ? "active" : ""}
+        data-lang="en"
+        aria-label="Switch to English">EN</a
+    >
 </div>
 
 <style>
-  .lang-picker {
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .lang-btn {
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px; /* Bouton arrondi */
-    background-color: var(--bg-color); /* Utilise tes variables CSS si tu en as */
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    border: 1px solid #e5e7eb;
-    transition: all 0.2s ease;
-  }
-
-  /* Mode sombre (si tu as suivi notre article sur le Dark Mode !) */
-  :root.dark .lang-btn {
-    border-color: #374151;
-    background-color: #1f2937;
-  }
-
-  .lang-btn:hover {
-    background-color: #f3f4f6;
-    opacity: 0.8;
-  }
-
-  :root.dark .lang-btn:hover {
-    background-color: #374151;
-  }
+    /* ... (Ton CSS reste le même) ... */
+    .lang-picker {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        background: var(--bg-secondary);
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        border: 1px solid var(--border-color);
+    }
+    .lang-picker a {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+    .lang-picker a.active {
+        color: var(--accent-color);
+        pointer-events: none;
+    }
+    .divider {
+        color: var(--border-color);
+        font-weight: normal;
+    }
 </style>

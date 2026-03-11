@@ -7,6 +7,7 @@ imageAlt: "Un clavier d'ordinateur lumineux avec les touches Cmd et K en surbril
 imageCaption: "La recherche instantanée, la touche premium de votre blog. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
 tags: ["Astro", "UX", "Pagefind", "JavaScript", "Recherche"]
+translation: "instant-search-pagefind-cmdk"
 ---
 
 Si vous utilisez des outils comme Raycast, Slack, ou que vous naviguez souvent sur les documentations de Vercel ou Tailwind, vous avez sûrement développé un réflexe : **Cmd+K** (ou Ctrl+K sous Windows).

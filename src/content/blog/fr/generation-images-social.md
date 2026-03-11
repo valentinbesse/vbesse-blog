@@ -7,6 +7,7 @@ imageAlt: "Illustration montrant du code se transformant automatiquement en cart
 imageCaption: "De la donnée brute à la prévisualisation sociale : l'automatisation au service du partage. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
 tags: ["Astro", "SEO", "OpenGraph", "Automatisation"]
+translation: "automatic-og-images"
 ---
 
 Vous venez de passer trois heures à peaufiner un article technique pointu. Vous copiez le lien, vous le collez fièrement sur LinkedIn ou Discord et là... c'est le drame.

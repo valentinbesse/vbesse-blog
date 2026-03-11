@@ -7,6 +7,7 @@ imageAlt: "Illustration montrant des blocs cubiques colorés s'emboîtant de man
 imageCaption: "Passer d'un bloc monolithique à une structure modulaire : la clé d'un code maintenable. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
 tags: ["Astro", "Architecture", "Clean Code", "WebDev"]
+translation: "astro-architecture"
 ---
 
 Au début de ce blog, tout semblait simple. J'avais un fichier `Layout.astro`. Il gérait le SEO, le Header, le Footer, les polices, et même quelques scripts spécifiques à la page d'accueil. C'était mon "Layout à tout faire".

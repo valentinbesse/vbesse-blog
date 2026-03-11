@@ -1,0 +1,33 @@
+---
+// src/components/ThanksWrapper.astro
+---
+
+<div class="thanks-wrapper">
+  <slot />
+</div>
+
+<style is:global>
+  /* On isole le CSS en préfixant avec .thanks-wrapper */
+  .thanks-wrapper {
+    max-width: 600px;
+    margin: 8rem auto;
+    text-align: center;
+    padding: 0 1.5rem;
+  }
+  
+  .thanks-wrapper .icon { 
+    font-size: 4rem; 
+    margin-bottom: 1rem; 
+  }
+  
+  .thanks-wrapper h1 { 
+    font-size: 2.5rem; 
+    margin-bottom: 1rem; 
+  }
+  
+  .thanks-wrapper p { 
+    font-size: 1.2rem; 
+    margin-bottom: 2rem; 
+    color: var(--text-muted); 
+  }
+</style>

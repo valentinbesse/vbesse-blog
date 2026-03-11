@@ -7,6 +7,7 @@ imageAlt: "Une enveloppe lumineuse traversant un portail numérique, symbolisant
 imageCaption: "L'art de l'envoi silencieux. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
 tags: ["Astro", "JavaScript", "UX", "Tutoriel"]
+translation: "backendless-forms-ajax"
 ---
 
 Quand on construit un site statique avec Astro, la question du formulaire de contact se pose inévitablement. Sans serveur (backend) pour traiter l'envoi de l'email, comment faire ?

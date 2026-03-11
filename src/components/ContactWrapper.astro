@@ -1,0 +1,83 @@
+---
+// src/components/ContactWrapper.astro
+---
+
+<div class="contact-wrapper">
+  <slot /> </div>
+
+<style is:global>
+  /* On préfixe toutes les règles par .contact-wrapper pour isoler le style */
+  .contact-wrapper {
+    max-width: 600px;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+  }
+
+  .contact-wrapper h1 { 
+    font-size: 2.5rem; 
+    margin-bottom: 1rem; 
+  }
+  
+  .contact-wrapper p { 
+    margin-bottom: 2rem; 
+    color: var(--text-muted); 
+  }
+
+  .contact-wrapper .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact-wrapper .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .contact-wrapper label {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .contact-wrapper input, 
+  .contact-wrapper textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    color: var(--text-color);
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+
+  .contact-wrapper input:focus, 
+  .contact-wrapper textarea:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+  }
+
+  .contact-wrapper .status-message {
+    margin-top: 1rem;
+    color: #ff4444;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .contact-wrapper .button.primary {
+    cursor: pointer;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: opacity 0.2s;
+  }
+
+  .contact-wrapper .button.primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+</style>

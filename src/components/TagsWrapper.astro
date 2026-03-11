@@ -1,0 +1,48 @@
+---
+// src/components/TagsWrapper.astro
+---
+
+<div class="tags-wrapper">
+    <slot />
+</div>
+
+<style is:global>
+    .tags-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        text-align: center;
+    }
+
+    .tags-wrapper h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .tags-wrapper .tags-cloud {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .tags-wrapper .tag-pill {
+        background: var(--bg-secondary, #f3f4f6);
+        color: #333;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 500;
+        border: 1px solid var(--border-color, #ddd);
+        transition: all 0.2s ease;
+    }
+
+    .tags-wrapper .tag-pill:hover {
+        background: var(--accent-color, #0070f3);
+        color: white;
+        border-color: var(--accent-color, #0070f3);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+</style>

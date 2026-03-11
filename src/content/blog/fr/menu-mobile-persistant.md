@@ -7,6 +7,7 @@ imageAlt: "Un smartphone affichant un menu de navigation emmêlé dans des toile
 imageCaption: "Ne laissez pas votre menu mobile se transformer en piège. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
 tags: ["Astro", "JavaScript", "UX", "Debugging", "ClientRouter"]
+translation: "astro-clientrouter-mobile-menu-trap"
 ---
 
 Dans mon précédent article, nous avons vu comment transformer un site statique Astro en une Single Page Application (SPA) ultra-fluide grâce à une simple ligne de code : `<ClientRouter />`.

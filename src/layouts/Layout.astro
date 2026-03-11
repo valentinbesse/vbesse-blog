@@ -1,32 +1,39 @@
 ---
+// src/layouts/Layout.astro
 import Analytics from "@vercel/analytics/astro";
-import BaseHead from "../components/BaseHead.astro"; // <-- Le nouveau chef d'orchestre
+import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+
+// 1. On récupère la langue actuelle (fr ou en)
+const locale = Astro.currentLocale || "fr";
 
 const {
     title = "Le Blog de Valentin Besse",
     description = "Bienvenue sur mon blog tech. On parle de code, d'Astro et de legacy.",
     image,
     schema,
+    translationUrl,
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={locale}>
     <head>
         <BaseHead
-        title={title}
-        description={description}
-        image={image}
-        schema={schema}
+            title={title}
+            description={description}
+            image={image}
+            schema={schema}
+            translationUrl={translationUrl} 
         />
-    </head>
+        </head>
     <body>
-        <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+        <a href="#main-content" class="skip-link">
+            {locale === 'fr' ? 'Aller au contenu principal' : 'Skip to main content'}
+        </a>
         <Header />
-        <main id="#main-content">
-            <slot />
+        <main id="main-content"> <slot />
         </main>
         <Footer />
         <Analytics />
@@ -35,16 +42,16 @@ const {
 
 <style>
     .skip-link {
-    position: absolute;
-    top: -40px; /* Caché par défaut */
-    left: 0;
-    background: var(--accent-color);
-    color: white;
-    padding: 8px;
-    z-index: 100;
-    transition: top 0.3s;
-  }
-  .skip-link:focus {
-    top: 0; /* Apparaît uniquement quand on tabule dessus */
-  }
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: var(--accent-color);
+        color: white;
+        padding: 8px;
+        z-index: 100;
+        transition: top 0.3s;
+    }
+    .skip-link:focus {
+        top: 0;
+    }
 </style>

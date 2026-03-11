@@ -3,6 +3,7 @@ title: "Welcome to vbesse.com"
 description: "This is my very first article published with Astro and Vercel."
 pubDate: "2025-12-22"
 tags: ["Blog", "Side Project", "Learning", "Astro"]
+translation: "hello-vbesse"
 ---
 
 ## Hello world

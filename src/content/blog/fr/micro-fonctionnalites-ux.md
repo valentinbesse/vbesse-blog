@@ -7,6 +7,7 @@ imageAlt: "Une loupe géante mettant en évidence trois petits rouages dorés su
 imageCaption: "Le diable (et l'UX) se cache dans les détails. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
 tags: ["Astro", "UX", "JavaScript", "UI", "Tutoriel"]
+translation: "micro-features-reading-ux"
 ---
 
 Sur un blog technique, on passe beaucoup de temps à peaufiner notre contenu, notre SEO et notre architecture. Mais qu'en est-il de nos lecteurs ? Sont-ils dans les meilleures conditions pour consommer nos longs tutoriels ?

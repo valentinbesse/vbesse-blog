@@ -7,6 +7,7 @@ imageAlt: "Un horloger futuriste réparant avec précision un mécanisme ancien 
 imageCaption: "Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA (Correction et mise en forme)."
 tags: ["Legacy", "Refactoring", "Testing", "Craftsmanship"]
+translation: "taming-legacy-code"
 ---
 
 *Avant-propos : Cet article a été écrit lorsque je travaillais à [Davidson](https://www.davidson.fr/). Merci à [Jimmy RUNDSTADLER](https://www.linkedin.com/in/jimmy-rundstadler/) et [Luc DEHAND](https://www.linkedin.com/in/luc-dehand/) pour leur relecture. Autre sujet, Je suis victime de mes propres limites et de mes biais. Je m’inscris dans le mouvement Software Craftsmanship et je suis coach Agile. Ma vision est influencée par ces notions. Je ne prétends pas rapporter ici la seule approche, ni même la meilleure. C’est juste la mienne.*

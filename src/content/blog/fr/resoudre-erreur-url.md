@@ -7,6 +7,7 @@ imageAlt: "Un insecte (bug) numérique essayant de lire un code source flou avec
 imageCaption: "Le cauchemar des développeurs JavaScript a encore frappé. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
 tags: ["Astro", "SEO", "Quick Tip", "Debugging"]
+translation: "astro-seo-object-object-url-error"
 ---
 
 Vous venez de publier un article, vous partagez le lien sur LinkedIn ou Bluesky, et là... aucune image de prévisualisation n'apparaît. Juste un titre triste et un grand espace vide.

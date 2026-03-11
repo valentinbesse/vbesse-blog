@@ -7,6 +7,7 @@ imageAlt: "Une lune et un soleil divisant un écran d'ordinateur, avec un boucli
 imageCaption: "Protéger les rétines de vos utilisateurs, une ligne de code à la fois. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
 tags: ["Astro", "CSS", "UI", "JavaScript", "Accessibilité"]
+translation: "flashless-dark-mode"
 ---
 
 Nous avons tous vécu cette situation : vous naviguez tranquillement à 2h du matin sur un site en mode sombre, vous cliquez sur un lien, et là... **BAM !** Un écran totalement blanc vous explose la rétine pendant une demi-seconde avant que le mode sombre ne se réactive.

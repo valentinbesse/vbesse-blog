@@ -6,6 +6,7 @@ image: "../../../assets/architecture-conceptuelle.png"
 imageCaption: "Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
 tags: ["Carrière", "Side Project", "Apprentissage", "Mindset"]
+translation: "building"
 ---
 
 C'est fait. **vbesse.com** est en ligne. 

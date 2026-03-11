@@ -7,6 +7,7 @@ imageAlt: "Illustration d'un flux d'ondes orange vif symbolisant le protocole RS
 imageCaption: "Le web indépendant fait de la résistance. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
 tags: ["Astro", "RSS", "IndieWeb", "Tutoriel"]
+translation: "native-rss-feed"
 ---
 
 Dans mon précédent article sur la génération d'images OpenGraph, je vous glissais qu'Astro ne servait pas qu'à générer des pages HTML, mais aussi du XML. Promesse tenue : aujourd'hui, on s'attaque au monument du web indépendant, le **flux RSS**.

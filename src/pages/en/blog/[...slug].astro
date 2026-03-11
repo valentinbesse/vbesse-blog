@@ -3,15 +3,10 @@ import { getCollection } from 'astro:content';
 import BlogPost from '../../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
-  // 1. On ne récupère que les articles anglais
-  const posts = await getCollection('blog', ({ id }) => {
-    return id.startsWith('en/');
-  });
+  const posts = await getCollection('blog', ({ id }) => id.startsWith('en/'));
 
   return posts.map((post) => {
-    // 2. On retire 'en/' du slug pour que l'URL reste propre (/blog/mon-article/)
-    const cleanSlug = post.slug.replace('en/', '');
-    
+    const cleanSlug = post.slug.replace(/^en\//, '');
     return {
       params: { slug: cleanSlug },
       props: post,
@@ -21,8 +16,18 @@ export async function getStaticPaths() {
 
 const post = Astro.props;
 const { Content, remarkPluginFrontmatter, headings } = await post.render();
+
+// Lien vers la version FR
+const translationUrl = post.data.translation 
+  ? `/blog/${post.data.translation}/` 
+  : null;
 ---
 
-<BlogPost headings={headings} {...post.data} minutesRead={remarkPluginFrontmatter?.minutesRead}>
+<BlogPost 
+  headings={headings} 
+  {...post.data} 
+  minutesRead={remarkPluginFrontmatter?.minutesRead}
+  translationUrl={translationUrl}
+>
   <Content />
 </BlogPost>

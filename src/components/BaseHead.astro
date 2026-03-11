@@ -1,8 +1,10 @@
 ---
+// src/components/BaseHead.astro
 import { ClientRouter } from "astro:transitions";
-import "../styles/global.css"; // On importe le CSS global ici
+import "../styles/global.css";
 
-const { title, description, image, schema } = Astro.props;
+const locale = Astro.currentLocale || "fr";
+const { title, description, image, schema, translationUrl } = Astro.props; // <-- On récupère translationUrl
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const slug = canonicalURL.pathname
@@ -13,20 +15,18 @@ const slug = canonicalURL.pathname
 let imagePath;
 
 if (image) {
-    // Cas A : Une image est explicitement fournie (depuis ton frontmatter)
-    // On extrait le .src si c'est un objet, sinon on garde la string
     imagePath = typeof image === 'object' ? image.src : image;
 } else if (slug) {
-    // Cas B : Pas d'image fournie MAIS c'est une page d'article
-    // On utilise l'image générée automatiquement par Satori !
     imagePath = `/og/${slug}.png`;
 } else {
-    // Cas C : Le fallback par défaut (pour l'accueil, la page contact...)
     imagePath = '/default-image.png';
 }
 
 const socialImageURL = new URL(imagePath, Astro.site).href;
 
+// Gestion du flux RSS selon la langue
+const rssPath = locale === "fr" ? "rss.xml" : "en/rss.xml";
+const rssTitle = locale === "fr" ? "Le Blog de Valentin Besse" : "Valentin Besse's Blog";
 ---
 
 <meta charset="UTF-8" />
@@ -36,12 +36,18 @@ const socialImageURL = new URL(imagePath, Astro.site).href;
 <link rel="shortcut icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
+
 <link
     rel="alternate"
     type="application/rss+xml"
-    title="Le Blog de Valentin Besse"
-    href={new URL("rss.xml", Astro.site)}
+    title={rssTitle}
+    href={new URL(rssPath, Astro.site)}
 />
+
+{translationUrl && (
+    <link rel="alternate" id="alt-link" href={translationUrl} hreflang={locale === 'fr' ? 'en' : 'fr'} />
+)}
+
 <meta name="theme-color" content="#0d1b2a" />
 <meta name="generator" content={Astro.generator} />
 
@@ -72,10 +78,7 @@ const socialImageURL = new URL(imagePath, Astro.site).href;
 <script is:inline>
     function setDarkMode() {
         const theme = (() => {
-            if (
-                typeof localStorage !== "undefined" &&
-                localStorage.getItem("theme")
-            ) {
+            if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
                 return localStorage.getItem("theme");
             }
             if (window.matchMedia("(prefers-color-scheme: dark)").matches) {

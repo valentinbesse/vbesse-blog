@@ -1,10 +1,10 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
-import TagDetailWrapper from "../../components/TagDetailWrapper.astro";
+import Layout from "../../../layouts/Layout.astro";
+import TagDetailWrapper from "../../../components/TagDetailWrapper.astro";
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection("blog", ({ id }) => id.startsWith("fr/"));
+  const allPosts = await getCollection("blog", ({ id }) => id.startsWith("en/"));
   const uniqueTags = [...new Set(allPosts.map((p) => p.data.tags).flat())].filter(Boolean);
 
   return uniqueTags.map((tag) => ({
@@ -17,21 +17,21 @@ const { tag } = Astro.params;
 const { posts } = Astro.props;
 ---
 
-<Layout title={`Articles sur ${tag}`}>
+<Layout title={`Posts about ${tag}`}>
   <TagDetailWrapper>
-    <h1>Articles marqués : <span class="highlight">#{tag}</span></h1>
+    <h1>Posts tagged with: <span class="highlight">#{tag}</span></h1>
 
     <ul class="post-list">
       {posts.map((post) => (
         <li>
-          <a href={`/blog/${post.slug.replace(/^fr\//, "")}/`}>{post.data.title}</a>
-          <span class="date">{new Date(post.data.pubDate).toLocaleDateString('fr-FR')}</span>
+          <a href={`/en/blog/${post.slug.replace(/^en\//, "")}/`}>{post.data.title}</a>
+          <span class="date">{new Date(post.data.pubDate).toLocaleDateString('en-US')}</span>
         </li>
       ))}
     </ul>
 
     <div class="back-link">
-      <a href="/tags">← Voir tous les sujets</a>
+      <a href="/en/tags">← View all topics</a>
     </div>
   </TagDetailWrapper>
 </Layout>

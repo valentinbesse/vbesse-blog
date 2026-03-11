@@ -7,6 +7,7 @@ imageAlt: "Un portail magique reliant deux pages web de manière fluide et trans
 imageCaption: "Naviguer sans recharger. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
 tags: ["Astro", "JavaScript", "UX", "Performance", "SPA"]
+translation: "astro-clientrouter-smooth-spa"
 ---
 
 Le monde du développement web a longtemps été divisé en deux camps.

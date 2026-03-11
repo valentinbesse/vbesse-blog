@@ -7,6 +7,7 @@ imageAlt: "Un robot de moteur de recherche lisant un parchemin numérique conten
 imageCaption: "Donnez à Google les clés de votre contenu. Image générée par IA."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
 tags: ["Astro", "SEO", "JSON-LD", "Google"]
+translation: "json-ld-automated-technical-seo"
 ---
 
 Quand on parle de SEO, on pense souvent aux mots-clés, aux balises `<h1>` ou aux méta-descriptions. C'est essentiel, mais aujourd'hui, les moteurs de recherche veulent plus : ils veulent du **contexte**.

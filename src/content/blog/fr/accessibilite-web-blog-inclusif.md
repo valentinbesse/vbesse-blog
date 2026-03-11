@@ -7,6 +7,7 @@ imageAlt: "Un groupe de personnes avec différents handicaps (visuel, moteur, au
 imageCaption: "Les quatre piliers de l'accessibilité numérique : contraste visuel, navigation clavier, clarté sémantique et inclusion universelle. Image issue du blog ippon.fr."
 aiDisclaimer: "Article écrit avec l'aide de l'IA."
 tags: ["Accessibilité", "WebPerf", "Astro", "UX"]
+translation: "accessibility-by-example"
 ---
 
 **Avant-propos :** *L'idée de ces travaux de mise en conformité et la rédaction de cet article m'ont été soufflées par [Florian Kromer](https://www.linkedin.com/in/florian-kromer/). Un grand merci à lui pour avoir attiré mon attention sur cet aspect crucial du développement web moderne.*

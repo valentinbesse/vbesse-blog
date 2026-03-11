@@ -7,6 +7,7 @@ imageAlt: "A group of people with various disabilities (visual, motor, auditory)
 imageCaption: "The four pillars of digital accessibility: visual contrast, keyboard navigation, semantic clarity, and universal inclusion. Image from the ippon.fr blog."
 aiDisclaimer: "Article written with the help of AI."
 tags: ["Accessibility", "WebPerf", "Astro", "UX"]
+translation: "accessibilite-web-blog-inclusif"
 ---
 
 **Foreword:** *The idea for this compliance work and the writing of this article were suggested to me by [Florian Kromer](https://www.linkedin.com/in/florian-kromer/). A big thank you to him for drawing my attention to this crucial aspect of modern web development.*

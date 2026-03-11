@@ -11,6 +11,7 @@ const {
     pubDate,
     updatedDate,
     heroImage,
+    translationUrl,
     image,
     imageAlt,
     imageCaption,
@@ -63,7 +64,7 @@ const minutesReadDisplay = isEnglish ? `${minutesRead} min read` : `${minutesRea
 
 ---
 
-<Layout title={title} description={description} image={finalImage} schema={articleSchema}>
+<Layout title={title} description={description} image={finalImage} schema={articleSchema} translationUrl={translationUrl}>
     <ProgressBar />
 
     <article class="blog-post-container" data-pagefind-body>
