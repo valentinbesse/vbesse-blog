@@ -4,6 +4,28 @@ import Hero from "../components/Hero.astro";
 ---
 
 <Layout title="Accueil | Valentin Besse">
+
+    <script is:inline>
+        // 1. On vérifie qu'on est bien sur la page d'accueil stricte
+        if (window.location.pathname === '/') {
+            // 2. On regarde si l'utilisateur a déjà choisi une langue
+            const savedLang = localStorage.getItem('preferred_lang');
+            
+            if (savedLang === 'en') {
+                // Redirection si l'anglais était sauvegardé
+                window.location.replace('/en/');
+            } else if (!savedLang) {
+                // 3. Pas de choix sauvegardé : on vérifie le navigateur
+                const browserLang = navigator.language || navigator.userLanguage;
+                
+                // Si la langue ne commence pas par "fr" (ex: "en-US", "es-ES")
+                if (!browserLang.toLowerCase().startsWith('fr')) {
+                    window.location.replace('/en/');
+                }
+            }
+        }
+    </script>
+
     <Hero 
         greeting="Salut, je suis"
         bio="Bienvenue sur mon espace personnel. Je suis un passionné de technologies, explorant le développement web moderne. Ici, je partage mes découvertes, mes projets et mes réflexions techniques."

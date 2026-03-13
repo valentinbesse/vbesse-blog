@@ -7,8 +7,20 @@ const locale = Astro.currentLocale || "fr";
 const base = locale === "fr" ? "" : `/${locale}`;
 
 const navTranslations = {
-    fr: { home: "Accueil", blog: "Blog", tags: "Sujets", about: "À propos", contact: "Contact" },
-    en: { home: "Home", blog: "Blog", tags: "Topics", about: "About", contact: "Contact" }
+    fr: {
+        home: "Accueil",
+        blog: "Blog",
+        tags: "Sujets",
+        about: "À propos",
+        contact: "Contact",
+    },
+    en: {
+        home: "Home",
+        blog: "Blog",
+        tags: "Topics",
+        about: "About",
+        contact: "Contact",
+    },
 };
 
 const t = navTranslations[locale as keyof typeof navTranslations];
@@ -31,23 +43,119 @@ const isActive = (href: string) => {
 
         <div class="actions">
             <button id="theme-toggle" aria-label="Toggle Theme">
-                <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg
+                    class="sun"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><circle cx="12" cy="12" r="5"></circle><line
+                        x1="12"
+                        y1="1"
+                        x2="12"
+                        y2="3"></line><line x1="12" y1="21" x2="12" y2="23"
+                    ></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"
+                    ></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"
+                    ></line><line x1="1" y1="12" x2="3" y2="12"></line><line
+                        x1="21"
+                        y1="12"
+                        x2="23"
+                        y2="12"></line><line
+                        x1="4.22"
+                        y1="19.78"
+                        x2="5.64"
+                        y2="18.36"></line><line
+                        x1="18.36"
+                        y1="5.64"
+                        x2="19.78"
+                        y2="4.22"></line></svg
+                >
+                <svg
+                    class="moon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                    ></path></svg
+                >
             </button>
             <Search />
         </div>
 
         <button id="menu-toggle" aria-label="Menu" aria-expanded="false">
-            <svg class="icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-            <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            <svg
+                class="icon-menu"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><line x1="3" y1="12" x2="21" y2="12"></line><line
+                    x1="3"
+                    y1="6"
+                    x2="21"
+                    y2="6"></line><line x1="3" y1="18" x2="21" y2="18"
+                ></line></svg
+            >
+            <svg
+                class="icon-close"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><line x1="18" y1="6" x2="6" y2="18"></line><line
+                    x1="6"
+                    y1="6"
+                    x2="18"
+                    y2="18"></line></svg
+            >
         </button>
 
         <div class="nav-links">
-            <a href={`${base}/`} data-nav="home" class={isActive(`${base}/`) ? "active" : ""}>{t.home}</a>
-            <a href={`${base}/blog`} data-nav="blog" class={isActive(`${base}/blog`) ? "active" : ""}>{t.blog}</a>
-            <a href={`${base}/tags`} data-nav="tags" class={isActive(`${base}/tags`) ? "active" : ""}>{t.tags}</a>
-            <a href={`${base}/about`} data-nav="about" class={isActive(`${base}/about`) ? "active" : ""}>{t.about}</a>
-            <a href={`${base}/contact`} data-nav="contact" class={isActive(`${base}/contact`) ? "active" : ""}>{t.contact}</a>
+            <a
+                href={`${base}/`}
+                data-nav="home"
+                class={isActive(`${base}/`) ? "active" : ""}>{t.home}</a
+            >
+            <a
+                href={`${base}/blog`}
+                data-nav="blog"
+                class={isActive(`${base}/blog`) ? "active" : ""}>{t.blog}</a
+            >
+            <a
+                href={`${base}/tags`}
+                data-nav="tags"
+                class={isActive(`${base}/tags`) ? "active" : ""}>{t.tags}</a
+            >
+            <a
+                href={`${base}/about`}
+                data-nav="about"
+                class={isActive(`${base}/about`) ? "active" : ""}>{t.about}</a
+            >
+            <a
+                href={`${base}/contact`}
+                data-nav="contact"
+                class={isActive(`${base}/contact`) ? "active" : ""}
+                >{t.contact}</a
+            >
             <LanguagePicker />
         </div>
     </nav>
@@ -56,92 +164,140 @@ const isActive = (href: string) => {
 <script>
     function init() {
         const path = window.location.pathname.replace(/\/$/, "") || "/";
-        const isEn = path.startsWith('/en');
+        const isEn = path.startsWith("/en");
         const base = isEn ? "/en" : "";
 
         // 1. DÉTECTION DU LIEN DE TRADUCTION SPÉCIFIQUE (L'élément que tu viens de voir !)
         // On cherche la balise dans le <head> de la page actuelle
-        const altLink = document.getElementById('alt-link');
-        const customTarget = altLink ? altLink.getAttribute('href') : null;
+        const altLink = document.getElementById("alt-link");
+        const customTarget = altLink ? altLink.getAttribute("href") : null;
 
         // --- 2. MISE À JOUR DU LANGUAGE PICKER (Redirection intelligente) ---
         const frLangLink = document.querySelector('.lang-picker a[data-lang="fr"]');
         const enLangLink = document.querySelector('.lang-picker a[data-lang="en"]');
 
         if (frLangLink && enLangLink) {
+            frLangLink.addEventListener('click', () => {
+                localStorage.setItem('preferred_lang', 'fr');
+            });
+            enLangLink.addEventListener('click', () => {
+                localStorage.setItem('preferred_lang', 'en');
+            });
+
             if (isEn) {
                 // On est en anglais : le bouton FR doit mener vers customTarget (si existant)
                 // sinon on retire juste le /en (fallback classique)
-                const targetFr = customTarget || path.replace(/^\/en/, '') || '/';
-                frLangLink.setAttribute('href', targetFr);
-                
-                enLangLink.classList.add('active');
-                frLangLink.classList.remove('active');
+                const targetFr =
+                    customTarget || path.replace(/^\/en/, "") || "/";
+                frLangLink.setAttribute("href", targetFr);
+
+                enLangLink.classList.add("active");
+                frLangLink.classList.remove("active");
             } else {
                 // On est en français : le bouton EN doit mener vers customTarget (si existant)
                 // sinon on ajoute /en (fallback classique)
-                const targetEn = customTarget || (path === '/' ? '/en/' : `/en${path}`);
-                enLangLink.setAttribute('href', targetEn);
-                
-                frLangLink.classList.add('active');
-                enLangLink.classList.remove('active');
+                const targetEn =
+                    customTarget || (path === "/" ? "/en/" : `/en${path}`);
+                enLangLink.setAttribute("href", targetEn);
+
+                frLangLink.classList.add("active");
+                enLangLink.classList.remove("active");
             }
         }
 
-        // --- 2. MISE À JOUR DU LOGO ---
-        const logoLink = document.querySelector('.logo');
+        // --- 3. MISE À JOUR DU LOGO ---
+        const logoLink = document.querySelector(".logo");
         if (logoLink) {
             // On force le lien du logo vers la racine de la langue actuelle
-            logoLink.setAttribute('href', isEn ? "/en/" : "/");
+            logoLink.setAttribute("href", isEn ? "/en/" : "/");
         }
 
-        // --- 3 TRADUCTION DYNAMIQUE DES LIENS ---
+        // --- 4 TRADUCTION DYNAMIQUE DES LIENS ---
         const translations = {
-            fr: { home: "Accueil", blog: "Blog", tags: "Sujets", about: "À propos", contact: "Contact" },
-            en: { home: "Home", blog: "Blog", tags: "Topics", about: "About", contact: "Contact" }
+            fr: {
+                home: "Accueil",
+                blog: "Blog",
+                tags: "Sujets",
+                about: "À propos",
+                contact: "Contact",
+            },
+            en: {
+                home: "Home",
+                blog: "Blog",
+                tags: "Topics",
+                about: "About",
+                contact: "Contact",
+            },
         };
         const t = isEn ? translations.en : translations.fr;
 
-        const navLinks = document.querySelectorAll('.nav-links a[data-nav]');
-        navLinks.forEach(link => {
-            const key = link.getAttribute('data-nav') as keyof typeof t;
+        const navLinks = document.querySelectorAll(".nav-links a[data-nav]");
+        navLinks.forEach((link) => {
+            const key = link.getAttribute("data-nav") as keyof typeof t;
             // Mise à jour du texte
             if (key && t[key]) link.textContent = t[key];
-            
+
             // Si c'est l'accueil, on veut "/" ou "/en/"
             // Sinon on veut "/blog" ou "/en/blog"
             let finalHref = "";
-            if (key === 'home') {
+            if (key === "home") {
                 finalHref = isEn ? "/en/" : "/";
             } else {
                 finalHref = `${base}/${key}`;
             }
-            
-            link.setAttribute('href', finalHref);
+
+            link.setAttribute("href", finalHref);
 
             // Mise à jour de la classe active (on nettoie les slashes pour comparer)
-            const currentHref = link.getAttribute('href').replace(/\/$/, "") || "/";
-            link.classList.remove('active');
-            if (path === currentHref || (currentHref !== "/" && currentHref !== "/en" && path.startsWith(currentHref))) {
-                link.classList.add('active');
+            const currentHref =
+                link.getAttribute("href").replace(/\/$/, "") || "/";
+            link.classList.remove("active");
+            if (
+                path === currentHref ||
+                (currentHref !== "/" &&
+                    currentHref !== "/en" &&
+                    path.startsWith(currentHref))
+            ) {
+                link.classList.add("active");
             }
         });
 
-        // --- 4. MENU MOBILE ---
+        // --- 5. MENU MOBILE ---
         const menuToggle = document.getElementById("menu-toggle");
         const navLinksContainer = document.querySelector(".nav-links");
-        
+
         // Clone-fix pour transition:persist
-        const newMenuToggle = menuToggle?.cloneNode(true);
+        const newMenuToggle = menuToggle?.cloneNode(true) as HTMLButtonElement;
         if (menuToggle && newMenuToggle && menuToggle.parentNode) {
             menuToggle.parentNode.replaceChild(newMenuToggle, menuToggle);
-            newMenuToggle.addEventListener("click", () => {
+            
+            newMenuToggle.addEventListener("click", (e) => {
+                e.stopPropagation(); // Empêche le clic de se propager au document
                 const isExpanded = newMenuToggle.getAttribute("aria-expanded") === "true";
                 newMenuToggle.setAttribute("aria-expanded", String(!isExpanded));
                 navLinksContainer?.classList.toggle("expanded");
                 newMenuToggle.classList.toggle("open");
             });
         }
+
+        // Click Away: Fermer le menu si on clique en dehors
+        const closeMenuOnClickOutside = (event: MouseEvent) => {
+            const target = event.target as Node;
+            // On vérifie que le menu est ouvert ET qu'on ne clique ni sur le conteneur du menu, ni sur le bouton
+            if (
+                navLinksContainer?.classList.contains("expanded") &&
+                !navLinksContainer.contains(target) &&
+                newMenuToggle && !newMenuToggle.contains(target)
+            ) {
+                newMenuToggle.setAttribute("aria-expanded", "false");
+                navLinksContainer.classList.remove("expanded");
+                newMenuToggle.classList.remove("open");
+            }
+        };
+
+        // On s'assure de ne pas dupliquer l'écouteur à cause des transitions
+        document.removeEventListener("click", closeMenuOnClickOutside);
+        document.addEventListener("click", closeMenuOnClickOutside);
 
         // --- 5. DARK MODE ---
         const themeToggle = document.getElementById("theme-toggle");
@@ -150,7 +306,12 @@ const isActive = (href: string) => {
             themeToggle.parentNode.replaceChild(newThemeToggle, themeToggle);
             newThemeToggle.addEventListener("click", () => {
                 document.documentElement.classList.toggle("dark");
-                localStorage.setItem("theme", document.documentElement.classList.contains("dark") ? "dark" : "light");
+                localStorage.setItem(
+                    "theme",
+                    document.documentElement.classList.contains("dark")
+                        ? "dark"
+                        : "light",
+                );
             });
         }
     }
@@ -160,28 +321,136 @@ const isActive = (href: string) => {
 
 <style>
     /* ... Ton CSS reste le même ... */
-    header { margin: 0; padding: 0 1em; background-color: var(--secondary-bg); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); position: relative; z-index: 100; width: 100%; }
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; max-width: 1200px; margin: 0 auto; }
-    .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text-color); font-weight: bold; }
-    .logo img { display: block; width: 32px; height: 32px; object-fit: contain; }
-    .logo-text { font-weight: bold; font-size: 1.5rem; color: var(--text-color); text-decoration: none; }
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a { color: var(--text-color); text-decoration: none; font-weight: 500; font-size: 1rem; transition: color 0.2s; border-bottom: 2px solid transparent; }
-    .nav-links a:hover, .nav-links a.active { color: var(--accent-color); border-bottom-color: var(--accent-color); }
-    #menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
-    .icon-close { display: none; }
-    #menu-toggle.open .icon-menu { display: none; }
-    #menu-toggle.open .icon-close { display: block; }
-    @media (max-width: 768px) {
-        #menu-toggle { display: flex; align-items: center; justify-content: center; }
-        .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg-color); border-bottom: 1px solid var(--border-color); flex-direction: column; align-items: center; padding: 2rem; gap: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
-        .nav-links.expanded { display: flex; }
-        .nav-links a { font-size: 1.2rem; width: 100%; text-align: center; padding: 0.5rem 0; }
+    header {
+        margin: 0;
+        padding: 0 1em;
+        background-color: var(--secondary-bg);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        position: relative;
+        z-index: 100;
+        width: 100%;
     }
-    .actions { display: flex; align-items: center; gap: 0.5rem; }
-    #theme-toggle { background: none; border: none; border-right: 1px solid var(--action-border-color); padding-right: 1rem; cursor: pointer; color: var(--text-color); display: flex; align-items: center; justify-content: center; }
-    .sun { display: none; }
-    .moon { display: block; }
-    :global(html.dark) .sun { display: block; }
-    :global(html.dark) .moon { display: none; }
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: bold;
+    }
+    .logo img {
+        display: block;
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+    }
+    .logo-text {
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: var(--text-color);
+        text-decoration: none;
+    }
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+    }
+    .nav-links a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: color 0.2s;
+        border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+        color: var(--accent-color);
+        border-bottom-color: var(--accent-color);
+    }
+    #menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+    }
+    .icon-close {
+        display: none;
+    }
+    #menu-toggle.open .icon-menu {
+        display: none;
+    }
+    #menu-toggle.open .icon-close {
+        display: block;
+    }
+    @media (max-width: 768px) {
+        #menu-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--kebab-menu-color);
+        }
+        #menu-toggle svg {
+           stroke: var(--kebab-menu-color);
+        }
+        .nav-links {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--bg-color);
+            border-bottom: 1px solid var(--border-color);
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            gap: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .nav-links.expanded {
+            display: flex;
+        }
+        .nav-links a {
+            font-size: 1.2rem;
+            width: 100%;
+            text-align: center;
+            padding: 0.5rem 0;
+        }
+    }
+    .actions {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    #theme-toggle {
+        background: none;
+        border: none;
+        border-right: 1px solid var(--action-border-color);
+        padding-right: 1rem;
+        cursor: pointer;
+        color: var(--text-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .sun {
+        display: none;
+    }
+    .moon {
+        display: block;
+    }
+    :global(html.dark) .sun {
+        display: block;
+    }
+    :global(html.dark) .moon {
+        display: none;
+    }
 </style>
