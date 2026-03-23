@@ -12,9 +12,9 @@ translation: "de-vo2max-a-la-blessure-preparation-semi-marathon"
 
 The story often starts with a challenge among friends.
 
-I've been working out for years at *Le Punch* gym (fitness, cross-training, taekwondo, kickboxing...). Last year, my workout buddies (Léa, Mathias, Franck, Phillippe, Antoine) completed the 2025 Nancy half-marathon with excellent times, some even breaking the mythical two-hour mark. That was all it took for me to say: *"Why not me?"*.
+I've been working out for years at *[Le Punch](https://punchnancy.fr/)* gym (fitness, cross-training, taekwondo, kickboxing...). Last year, my workout buddies (Léa, Mathias, Franck, Phillippe, Antoine) completed the 2025 Nancy half-marathon with excellent times, some even breaking the mythical two-hour mark. That was all it took for me to say: *"Why not me?"*.
 
-I started running alone in May 2025. Very quickly, faced with the complexity of endurance training, I reached out to Mortimer DUBOIS (aka Morty) to coach me. The goal was clear: the Nancy half-marathon on March 29, 2026.
+I started running alone in May 2025. Very quickly, faced with the complexity of endurance training, I reached out to [Mortimer DUBOIS](https://www.instagram.com/morty.coaching/) (aka Morty) to coach me. The goal was clear: the Nancy half-marathon on March 29, 2026.
 
 Here is the analysis of this year of preparation, from the data of my "engine" to the final mechanical bug.
 
@@ -64,7 +64,7 @@ I decided to make the best of this situation. My doctor cleared me to maintain a
 So, I'm switching to "cross-training" mode:
 
 * **Cycling:** To keep my VO2Max intact without any impact on my tendons.
-* **Strength Training:** I'm continuing my classes at *Le Punch* and my rehab with the physio to forge titanium legs.
+* **Strength Training:** I'm continuing my classes at *[Le Punch](https://punchnancy.fr/)* and my rehab with the physio to forge titanium legs.
 
 The initial goal was to finish the half in 2026. The goal has simply been updated: **Nancy 2027, and this time, we're going for the "Sub-2h"**.
 

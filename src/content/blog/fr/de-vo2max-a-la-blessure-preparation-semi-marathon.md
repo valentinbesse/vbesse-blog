@@ -12,9 +12,9 @@ translation: "from-vo2max-to-injury-half-marathon-data-prep"
 
 L'histoire commence souvent par un défi entre amis.
 
-Je pratique le sport depuis des années à la salle *Le Punch* (fitness, cross-training, taekwondo, kickboxing...). L'année dernière, mes amis d'entraînement (Léa, Mathias, Franck, Phillippe, Antoine) ont bouclé le semi-marathon de Nancy 2025 avec d'excellents chronos, passant pour certains sous la barre mythique des deux heures. Il n'en fallait pas plus pour me dire : *"Pourquoi pas moi ?"*.
+Je pratique le sport depuis des années à la salle *[Le Punch](https://punchnancy.fr/)* (fitness, cross-training, taekwondo, kickboxing...). L'année dernière, mes amis d'entraînement (Léa, Mathias, Franck, Phillippe, Antoine) ont bouclé le semi-marathon de Nancy 2025 avec d'excellents chronos, passant pour certains sous la barre mythique des deux heures. Il n'en fallait pas plus pour me dire : *"Pourquoi pas moi ?"*.
 
-J'ai commencé à courir seul en mai 2025. Très vite, face à la complexité de l'entraînement d'endurance, j'ai fait appel à Mortimer DUBOIS (alias Morty) pour me coacher. L'objectif était clair : le semi de Nancy, le 29 mars 2026.
+J'ai commencé à courir seul en mai 2025. Très vite, face à la complexité de l'entraînement d'endurance, j'ai fait appel à [Mortimer DUBOIS](https://www.instagram.com/morty.coaching/) (alias Morty) pour me coacher. L'objectif était clair : le semi de Nancy, le 29 mars 2026.
 
 Voici l'analyse de cette année de préparation, des datas de mon "moteur" jusqu'au bug mécanique final.
 
@@ -61,7 +61,7 @@ J'ai décidé de tirer le meilleur de cette situation. Mon médecin m'a autoris�
 Je passe donc en mode "entraînement croisé" :
 
 * **Le vélo :** Pour maintenir ma VO2Max intacte sans aucun choc pour mes tendons.
-* **Le renforcement musculaire :** Je continue mes cours au *Punch* et ma rééducation avec le kiné pour me forger des jambes en titane.
+* **Le renforcement musculaire :** Je continue mes cours au *[Punch](https://punchnancy.fr/)* et ma rééducation avec le kiné pour me forger des jambes en titane.
 
 L'objectif initial était de finir le semi en 2026. L'objectif a simplement été mis à jour : **Nancy 2027, et cette fois, on ira chercher le "Sub-2h"**.
 
